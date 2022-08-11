@@ -1,0 +1,143 @@
+.datatable{
+    height: 600px;
+    padding: 20px;
+
+    .datatabletitle{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 25px;
+        color: gray;
+        .newF{
+            font-size: 14px;
+            color: green;
+            
+        }
+    }
+    .cellwithImg{
+        display: flex;
+        align-items: center;
+        .cellImg{
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+    }
+    .cellwithStatus{
+        padding: 5px;
+        border-radius: 5px;
+        &.Active{
+            color: green;
+            background-color:rgba(118, 217, 130, 0.912)
+        }
+        &.Suspended{
+            color: orange;
+            background-color:rgba(224, 224, 115, 0.912)
+        }
+        &.Off{
+            color: red;
+            background-color:rgba(230, 166, 166, 0.912)
+        }
+    }
+}
+.cellAction{
+display: flex;
+align-items: center;
+gap: 15px;
+
+.viewButton{
+ padding:2px 5px;
+ border-radius:5px;
+ color:darkblue;
+ border:1px dotted rgba(0,0,139,0.596);
+ cursor: pointer;
+}
+.deleteButton{
+ padding:2px 5px;
+ border-radius:5px;
+ color:crimson;
+ border:1px dotted rgba(220,20,60,0.6);
+ cursor: pointer;
+}
+.updateButton{
+    padding:2px 5px;
+    border-radius:5px;
+    color:rgb(13, 179, 71);
+    border:1px dotted rgba(77, 240, 104, 0.6);
+    cursor: pointer;
+   }
+
+ .select-dropdown {
+     position: relative;
+     background-color: #fbb1b1;
+     width: auto;
+     float: left;
+     width: 100px;
+     border-radius: 2px;
+
+     select {
+         font-family: "helvetica neue", helvetica;
+         font-size: 1rem;
+         font-weight: 200;
+         color: rgb(77, 77, 77);
+         max-width: 100%;
+         padding: 8px 24px 8px 10px;
+         border: none;
+         background-color: transparent;
+         -webkit-appearance: none;
+         -moz-appearance: none;
+         appearance: none;
+
+         &:active,
+         &:focus {
+             outline: none;
+             box-shadow: none;
+         }
+     }
+
+     &:after {
+         content: " ";
+         position: absolute;
+         top: 50%;
+         margin-top: -2px;
+         right: 8px;
+         width: 0;
+         height: 0;
+         border-left: 5px solid transparent;
+         border-right: 5px solid transparent;
+         border-top: 5px solid rgb(255, 255, 255);
+     }
+ }
+ .hovertext {
+     position: relative;
+     border-bottom: 1px dotted black;
+ }
+
+ .hovertext:before {
+     content: attr(data-hover);
+     visibility: hidden;
+     opacity: 0;
+     width: 140px;
+     background-color: black;
+     color: #fff;
+     text-align: center;
+     border-radius: 5px;
+     padding: 5px 0;
+     transition: opacity 1s ease-in-out;
+
+     position: absolute;
+     z-index: 1;
+     left: 0;
+     top: 110%;
+ }
+
+ .hovertext:hover:before {
+     opacity: 1;
+     visibility: visible;
+ }
+ 
+}

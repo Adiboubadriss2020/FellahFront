@@ -26,8 +26,8 @@ const Datatable = () => {
 
 const [fournisseurs, setFournisseurs] = useState([]);  
 let value=0
-const URL = `http://localhost:8080/fournisseur/update/`;
-const URL1=`http://localhost:8080/fournisseur/getAll`;
+  const URL = `http://fellah-back.herokuapp.com/fournisseur/update/`;
+  const URL1 =`https://fellah-back.herokuapp.com/fourniseeur/getAll`;
 const mutateRow = useFakeMutation();
 const [snackbar, setSnackbar] = React.useState(null);
 const handleCloseSnackbar = () => setSnackbar(null);
@@ -36,7 +36,7 @@ const handleCloseSnackbar = () => setSnackbar(null);
 const handleUpdate = React.useCallback(async(data) => 
 {
 
-    axios.put( `http://localhost:8080/fournisseur/update/${data.id}`,data);
+  axios.put( `http://fellah-back.herokuapp.com/fournisseur/update/${data.id}`,data);
     const response = await mutateRow(data);
     setSnackbar({ children: 'User successfully saved', severity: 'success' });
     return response;

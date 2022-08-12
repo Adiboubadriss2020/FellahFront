@@ -27,7 +27,7 @@ export const NewFournisseur = ({inputs,title}) => {
   }
 
   useEffect(()=>{
-    fetch("https://fellah-back.herokuapp.com/getAll")
+    fetch("https://fellah-back.herokuapp.com/fourniseeur/getAll")
     .then(res=>res.json())
     .then((result)=>{
       setFournisseurs(result);

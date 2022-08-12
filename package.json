@@ -60,7 +60,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
+  "Dependencies": {
     "@types/react-select": "^5.0.1",
     "html-loader": "^4.1.0",
     "react-scripts": "^5.0.1"

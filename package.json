@@ -4,36 +4,36 @@
   "private": true,
   "engines": {
     "node": "16.16.0",
-    "npm": "8.11.0"
+    "npm": "8.17.0"
   },
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@mui/icons-material": "^5.6.2",
-    "@mui/material": "^5.7.0",
-    "@mui/x-data-grid": "^5.11.0",
-    "@mui/x-data-grid-pro": "^5.14.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.10.0",
+    "@mui/x-data-grid": "^5.15.2",
+    "@mui/x-data-grid-pro": "^5.15.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.4.3",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
-    "faker": "^5.5.3",
+    "faker": "^6.6.6",
     "moment": "^2.29.4",
-    "npm": "^8.11.0",
+    "npm": "^8.17.0",
     "plot": "^1.0.22",
-    "react": "^18.1.0",
+    "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
-    "react-circular-progressbar": "^2.0.4",
-    "react-dom": "^18.1.0",
+    "react-circular-progressbar": "^2.1.0",
+    "react-dom": "^18.2.0",
     "react-phone-input-2": "^2.15.1",
-    "react-phone-number-input": "^3.2.6",
+    "react-phone-number-input": "^3.2.7",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1",
-    "react-select": "^3.2.0",
+    
+    "react-select": "^5.4.0",
     "reactjs-popup": "^2.0.5",
-    "recharts": "^2.1.9",
-    "sass": "^1.51.0",
+    "recharts": "^2.1.13",
+    "sass": "^1.54.4",
     "snackbar": "^1.1.0",
     "web-vitals": "^2.1.4"
   },
@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@types/react-select": "^5.0.1",
-    "html-loader": "^4.1.0"
+    "html-loader": "^4.1.0",
+    "react-scripts": "^5.0.1"
   }
 }

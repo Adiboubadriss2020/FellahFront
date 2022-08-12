@@ -27,9 +27,9 @@ import NewVeterinaire from './pages/new/NewVeterinaire/NewVeterinaire';
 import NewVeterinaireVisite from './pages/new/NewVeterinaireVisite/NewVeterinaireVisite';
 import NewAnimalAlimentation from './pages/new/NewAnimalAlimentation/NewAnimalAlimentation';
 function App() {
-  const { darkMode } = useContext(DarkModeContext);
+  //const { darkMode } = useContext(npmDarkModeContext);
   return (
-    <div className={darkMode ? "app dacrk" : "app"}>
+    <div /*className={darkMode ? "app dacrk" : "app"}*/>
      <BrowserRouter>
     <Routes>
       <Route path='/'>

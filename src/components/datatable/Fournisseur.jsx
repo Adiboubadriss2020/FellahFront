@@ -27,7 +27,7 @@ const Datatable = () => {
 const [fournisseurs, setFournisseurs] = useState([]);  
 let value=0
   const URL = `http://fellah-back.herokuapp.com/fournisseur/update/`;
-  const URL1 =`https://fellah-back.herokuapp.com/fourniseeur/getAll`;
+  const URL1 =`https://fellah-back.herokuapp.com/fournisseur/getAll`;
 const mutateRow = useFakeMutation();
 const [snackbar, setSnackbar] = React.useState(null);
 const handleCloseSnackbar = () => setSnackbar(null);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './employee.scss'
+
 import { DataGrid } from '@mui/x-data-grid';
 import { animalcol, employeecol, userColumns } from '../../datatabledata';
 import { Link, useParams } from 'react-router-dom';
@@ -92,13 +92,12 @@ const Datatable = () => {
 
   return (
 
-
     <div className="datatable">
       <div className="datatabletitle">Employees
         <CustomizedDialogs title="Ajouter un employee">
           <RegistrationForm />
         </CustomizedDialogs>
-        <Link to="/employee/new/TachEmployee" style={{ textDecoration: "none",}} className="newF">
+        <Link to="/employee/new/TacheEmployee" style={{ textDecoration: "none",}} className="newF">
           Affecter une tache
 
         </Link>

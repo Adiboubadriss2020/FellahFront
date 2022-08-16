@@ -1,9 +1,9 @@
 .new {
-    display: flex;
+   
     width: 100%;
 
     .newcontainer {
-        flex: 6;
+        
 
         .top,
         .bottom {
@@ -17,6 +17,8 @@
             .title {
                 color: gray;
                 font-size: 15px;
+                align-items: center;
+                text-align: center;
             }
 
             .left {
@@ -37,12 +39,12 @@
 
                 form {
                     display: flex;
-
+                   
                     gap: 15px;
                     justify-content: space-around;
 
                     .forminput {
-                        width: 40%;
+                        width: 250px;
 
                         input {
                             width: 100%;
@@ -78,13 +80,3 @@
         }
     }
 }
- .root{
-     margin: 20;
-    padding: 2px;
- }
- .closeButton {
-     position: 'absolute';
-         right: 1px;
-         top: 1px;
-         color: grey;
- }

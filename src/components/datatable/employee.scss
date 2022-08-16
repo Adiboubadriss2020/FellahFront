@@ -2,7 +2,26 @@
     height: 600px;
     padding: 20px;
 
-  
+.datatabletitle {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 25px;
+
+        color: gray;
+
+        .newF {
+            font-size: 14px;
+            color: green;
+        }
+
+        .CustomizedDialogs {
+
+            color: green;
+        }
+    }
     .cellwithImg{
         display: flex;
         align-items: center;

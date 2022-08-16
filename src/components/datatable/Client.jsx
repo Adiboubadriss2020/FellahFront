@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './datatable.scss'
+import './client.scss'
 import { DataGrid} from '@mui/x-data-grid';
 import { clientcol,UserRow } from '../../datatabledata';
 import { Link } from 'react-router-dom';

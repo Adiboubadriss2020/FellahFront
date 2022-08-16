@@ -28,13 +28,8 @@ export const NewAnimalAlimentation = ({ inputs, title }) => {
         const alimentation_animal = {
             date_alimentation,
             quantite,
-            animal,
             alimentation
         }
-
-        //Check object bovin
-        axios.get(`http://localhost:8080/animal/check/${animal}`).then(function (response) { 
-            alimentation_animal.animal = response.data
 
             //Check object alimentation
             axios.get(`http://localhost:8080/alimentation/check/${alimentation}`)
@@ -64,23 +59,6 @@ export const NewAnimalAlimentation = ({ inputs, title }) => {
                     
            /* */
 
-
-        }).catch(error => {
-            setSnackbar({ children: error.message+", Verifier l'identifiant du Bovin", severity: 'error' });
-        });      
-
-            
-
- //Check Quantity
-
-
-
-       
-                        
-      /*  
-       
-  //  window.location.reload(false);
-    */
 }
 
     useEffect(() => {  
@@ -97,12 +75,6 @@ export const NewAnimalAlimentation = ({ inputs, title }) => {
 
                     <div className="right">
                         <form action="" noValidate autoComplete="off">
-
-                            <div className="forminput">
-                                <label >Bovin Ref</label>
-                                
-                                <input type="number" placeholder="Enter le reference du bovin'" value={animal} onChange={(e) => setAnimal(e.target.value)} required />
-                            </div>
                             <div className="forminput">
                                 <label >Alimentation</label>
                                 <input type="number" placeholder="Enter le réference de l'alimentation'" value={alimentation} onChange={(e) => setAlimentation(e.target.value)} required />

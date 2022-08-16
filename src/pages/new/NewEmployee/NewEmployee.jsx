@@ -8,6 +8,7 @@ import Alert, { AlertProps } from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
 
+
 export const NewEmployee = ({inputs,title}) => {
     const[file,setFile] = useState("");
     const[nom,setNom]=useState('')

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './datatable.scss'
+import './alimentation.scss'
 import { DataGrid } from '@mui/x-data-grid';
 import { alimentationanimal, alimentationcol } from '../../datatabledata';
 import { Link, useParams } from 'react-router-dom';
@@ -137,7 +137,7 @@ const Datatable = () => {
 
                 rows={Alimentation}
                 columns={alimentationcol.concat(actionColumn)}
-                pageSize={5}
+                pageSize={8}
                 disableMultipleSelection={true}
                 rowsPerPageOptions={[5]}
                 disableSelection={true}

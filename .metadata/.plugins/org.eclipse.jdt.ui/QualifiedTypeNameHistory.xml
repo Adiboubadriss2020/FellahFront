@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.fellah.api.service.EmployeeService"/>
+    <fullyQualifiedTypeName name="com.fellah.api.service.ClientService"/>
+    <fullyQualifiedTypeName name="com.fellah.api.service.VeterinaireService"/>
+    <fullyQualifiedTypeName name="com.fellah.api.service.VisiteService"/>
+    <fullyQualifiedTypeName name="com.fellah.api.service.AlimentationService"/>
+    <fullyQualifiedTypeName name="com.fellah.api.service.AnimalService"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="com.fellah.api.model.Alimentation"/>
+    <fullyQualifiedTypeName name="com.fellah.api.model.Animal"/>
+    <fullyQualifiedTypeName name="com.fellah.api.model.Client"/>
+    <fullyQualifiedTypeName name="com.fellah.api.model.Employee"/>
+    <fullyQualifiedTypeName name="com.fellah.api.model.Fournisseur"/>
+    <fullyQualifiedTypeName name="com.fellah.api.model.Veterinaire"/>
+    <fullyQualifiedTypeName name="com.fellah.api.model.Visite"/>
+    <fullyQualifiedTypeName name="java.lang.Character"/>
+    <fullyQualifiedTypeName name="com.fellah.api.repository.ChargeRepository"/>
+    <fullyQualifiedTypeName name="com.fellah.api.service.ChargeService"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="javax.persistence.CascadeType"/>
+    <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
+    <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.fellah.api.model.Charge"/>
+</qualifiedTypeNameHistroy>

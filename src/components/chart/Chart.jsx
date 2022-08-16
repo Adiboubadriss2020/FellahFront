@@ -26,7 +26,7 @@ const Chart = ({aspect, title}) => {
 
 console.log(id1,id2)
 
-    fetch(`http://localhost:8080/${id1}/days/${id2}/`
+    fetch(`http://localhost:8080/fournisseurs/days/${id2}/`
       , {
         headers: {
           'Content-Type': 'application/json',
@@ -54,15 +54,13 @@ console.log(id1,id2)
   }
 
   function changer(){
-    getseven(filter.value,filter2.value)
+    getseven(filter.value)
   }
 
   useEffect(() => {
     filter = document.getElementById('filter')
-    filter2 = document.getElementById('filter2')
     if (filter && filter2)
       filter.addEventListener('change', changer)
-    filter2.addEventListener('change', changer)
   }, []) 
   return (
     
@@ -89,15 +87,9 @@ console.log(id1,id2)
           <Area type="monotone" dataKey="total" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
       </ResponsiveContainer>  
+     
       <div className="selecbox">
         <select id="filter">
-          <option value="fournisseur">Fournisseurs</option>
-          <option value="employee">Employés</option>
-          <option value="client">Client</option>
-        </select>
-      </div>
-      <div className="selecbox">
-        <select id="filter2">
           <option value="3">Dernier 3 jours</option>
           <option value="7">Dernier semaine</option>
           <option value="30">Dernier mois</option>

@@ -1,0 +1,16 @@
+package com.fellah.api.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.fellah.api.model.Alimentation_animal;
+
+public interface Alimentation_animalRepository extends JpaRepository<Alimentation_animal, Long> {
+
+	 @Query(value="select f.date,sum(f.quantite) from Fournisseur f where f.date between ?1 and ?2  group by f.date order by f.date ",
+	    		nativeQuery = true)
+	    List<Object> sevendays(LocalDate threeDaysAgoDate,LocalDate today);
+}

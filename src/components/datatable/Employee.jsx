@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import './datatable.scss'
+import './employee.scss'
 import { DataGrid } from '@mui/x-data-grid';
 import { animalcol, employeecol, userColumns } from '../../datatabledata';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import Alert, { AlertProps } from '@mui/material/Alert';
+import RegistrationForm from '../../pages/new/NewEmployee';
+import CustomizedDialogs from '../../pages/new/NewEmployee/dialog'
 
 const useFakeMutation = () => {
   return React.useCallback(
@@ -93,12 +95,15 @@ const Datatable = () => {
 
     <div className="datatable">
       <div className="datatabletitle">Employees
-        <Link to="/employee/new/NewEmployee" style={{ textDecoration: "none" }} className="newF">
-          New Employee
+        <CustomizedDialogs title="Ajouter un employee">
+          <RegistrationForm />
+        </CustomizedDialogs>
+        <Link to="/employee/new/TachEmployee" style={{ textDecoration: "none",}} className="newF">
+          Affecter une tache
 
         </Link>
-
       </div>
+      
       <DataGrid
 
         rows={Employee}

@@ -78,3 +78,13 @@
         }
     }
 }
+ .root{
+     margin: 20;
+    padding: 2px;
+ }
+ .closeButton {
+     position: 'absolute';
+         right: 1px;
+         top: 1px;
+         color: grey;
+ }

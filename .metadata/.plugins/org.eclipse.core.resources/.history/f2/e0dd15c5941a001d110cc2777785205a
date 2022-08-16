@@ -1,0 +1,6 @@
+package com.fellah.api.service;
+
+public interface ChargeService {
+
+	public void SaveCharge()
+}

@@ -19,7 +19,7 @@ export const NewFournisseur = ({inputs,title}) => {
       e.preventDefault()
       const fournisseur={nom,email,adresse}
       console.log(fournisseur)
-      axios.post(`https://fellah-back.herokuapp.com/fournisseur/add`, fournisseur).catch(error => {
+      axios.post(`http://localhost:8080/fournisseur/add`, fournisseur).catch(error => {
         setSnackbar({ children: error.message, severity: 'error' });
       });
 
@@ -27,7 +27,7 @@ export const NewFournisseur = ({inputs,title}) => {
   }
 
   useEffect(()=>{
-    fetch("https://fellah-back.herokuapp.com/fourniseeur/getAll")
+    fetch("http://localhost:8080/fourniseeur/getAll")
     .then(res=>res.json())
     .then((result)=>{
       setFournisseurs(result);

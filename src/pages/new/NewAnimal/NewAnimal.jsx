@@ -1,125 +1,146 @@
-import React, { useEffect, useState } from 'react';
-import './new.scss';
+import React, { useState } from 'react';
+import './bovin.css';
 import axios from 'axios';
-import moment from 'moment';
-import Sidebar from '../../../components/sidebar/Sidebar';
-import Navbar from '../../../components/navbar/Navbar';
-import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
-import Alert, { AlertProps } from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-
-export const NewAnimal = ({inputs,title}) => {
-    const [date_achat, setDate_achat] = useState('')
-    const[date_vente,setDate_vente]=useState('')
-    const [origine, setOrigine] = useState('')
-    const [prix_achat, setPrix_achat] = useState('')
-    const [poid_achat, setPoid_achat] = useState('')
-    const [poid_vente, setPoid_vente] = useState('')
-    const [ref, setRef] = useState('')
-    const [infos, setInfos] = useState('')
-    const [etat, setEtat] = useState('')
-    var k=""
-    const[animal,setAnimal]=useState([])
-
-  const newdate = moment(date_achat).format('YYYY-MM-DD')
-  const newdate2 = moment(date_vente).format('YYYY-MM-DD')
+import FormInput from '../Inputpopup/FormInput';
+import { addanimal } from '../../../var';
+export const NewAnimal = () => {
+   
   const [snackbar, setSnackbar] = React.useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
+  const [animal, setAnimal] = useState({
+    date_achat:"",
+    ref:"",
+    date_vente:"",
+    origine:"",
+    poid_achat:"",
+    poid_vente:"",
+    prix_achat:"",
+    infos:"",
+    etat:""
+  });
+  
 
+const inputs = [
+  {
+    id: 1,
+    name: "ref",
+    type: "text",
+    placeholder: "Ref d'alimentation",
+    errorMessage:
+      "Respecter le Ref, exp: 054451",
+    label: "Ref",
+    pattern: "^([0-9]{3,10})$",
+    required: true,
+  },
+  {
+    id: 2,
+    name: "date_achat",
+    type: "date",
+    placeholder: "Date d'achat",
+    label: "Date d'achat",
+    required: true,
+  },
+  {
+    id: 3,
+    name: "prix_achat",
+    type: "text",
+    placeholder: "Prix d'achat",
+    errorMessage:
+      "Respecter le prix d'arrivage!",
+    pattern: "^([0-9'\.]{2,10})$",
+    label: "Prix d'achat",
+    required: true,
+  },
+  {
+    id: 4,
+    name: "origine",
+    type: "text",
+    placeholder: "Race",
+    errorMessage:
+      "La race est une chaine de caractère!",
+    label: "Race",
+    pattern: "^[A-Za-z]{3,16}$",
+    required: true,
+  },
+  {
+    id: 5,
+    name: "poid_achat",
+    type: "text",
+    placeholder: "Poid d'achat ",
+    errorMessage:
+      "Poid supérieur à 100!",
+    label: "Poid (kg)",
+    pattern: "^([0-9'\.]{2,4})$",
+    required: true,
+  },
+  {
+    id: 6,
+    name: "poid_vente",
+    type: "text",
+    placeholder: "Poid de vente ",
+    errorMessage:
+      "Poid supérieur à 100!",
+    label: "Poid de vente (kg)",
+    pattern: "^([0-9'\.]{2,4})$",
+    required: true,
+  },
+  {
+    id: 7,
+    name: "infos",
+    type: "text",
+    placeholder: "Infos sur la maladie du bovin...",
+    errorMessage:
+      "Infos insuffisant! au moins 4 caractères",
+    label: "Infos (optionnel)",
+    pattern: "^[A-Za-z]{4,16}$",
+    required: false,
+  },
+];
 
-    const handleClick=(e)=>{
-      e.preventDefault()
-      const animal = {
-        date_achat,
-        ref,
-        date_vente,
-        origine,
-        poid_achat,
-        poid_vente,
-        prix_achat,
-        infos,
-        etat
+const handleSubmit = (e) => {
+  e.preventDefault()
+  axios.post(addanimal, animal).catch(error => {
+    setSnackbar({ children: "Ref déja existe!", severity: 'error' });
+  });
+
+  setSnackbar({ children: "Ref bien enregistrer", severity: 'success' });
 }
-console.log(ref)
 
-     
-     axios.post(`http://localhost:8080/animal/add`, animal).catch(error => {
-       setSnackbar({ children: "Ref déja existe!", severity: 'error' });  
-         });
-      
-      setSnackbar({ children: "Ref bien enregistrer", severity: 'success' }); 
-     }
 
-  useEffect(()=>{
-    fetch("http://localhost:8080/animal/getAll")
-    .then(res=>res.json())
-    .then((result)=>{
-      setAnimal(result);
+const onChange = (e) => {
+  setAnimal({ ...animal, [e.target.name]: e.target.value });
+};
+return (
+  <div >
+    <form onSubmit={handleSubmit}>
+      <h1>Bovin</h1>
+      {inputs.map((input) => (
+        <FormInput
+          key={input.id}
+          {...input}
+          animal={animal[input.name]}
+          onChange={onChange}
+        />
+      ))}
+      <button>Ajouter</button>
+      {!!snackbar && (
+        <Snackbar
+          open
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          onClose={handleCloseSnackbar}
+          autoHideDuration={6000}
+        >
+          <Alert {...snackbar} onClose={handleCloseSnackbar} />
 
-    }
-  )
-  },[])
-  return (
-    <div className="new">
-      <Sidebar/>
-      <div className="newcontainer">
-        <Navbar/>
-      <div className="top">
-      <h1 className="title">{title}</h1>
-      </div>
-      <div className="bottom">
-     
-        <div className="right">
-        <form action=""  noValidate autoComplete="off">
-              <div className="forminput">
-                <label >Identifiant</label>
-                <input type="number" placeholder="Identifiant" value={ref} onChange={(e) => setRef(e.target.value)} required />
-              </div>
-    <div className="forminput">
- <label >Date d'achat</label>
- <input type="date" placeholder="Date d'achat" value={newdate} onChange={(e)=>setDate_achat(e.target.value)} required/>
-</div>
-<div className="forminput">
- <label >Date de vente</label>
-  <input type="date" placeholder="Date de vente" value={newdate2} onChange={(e)=>setDate_vente(e.target.value)}required/>
-</div>
-<div className="forminput">
- <label >Origine</label>
- <input type="text" placeholder="Enter L'origine" value={origine} onChange={(e)=>setOrigine(e.target.value)} required/>
-              </div>
-  <div className="forminput">
-     <label >Poid d'achat</label>
-                <input type="number" placeholder="Poid d'achat" value={poid_achat} onChange={(e) => setPoid_achat(e.target.value)} required />
-                </div>
-<div className="forminput">
-<label >Poid de vente</label>
-<input type="number" placeholder="Poid de vente" value={poid_vente} onChange={(e) => setPoid_vente(e.target.value)} required />
-                  </div>
-<div className="forminput">
-  <label >Prix d'achat</label>
-  <input type="number" placeholder="Prix d'achat" value={prix_achat} onChange={(e) => setPrix_achat(e.target.value)} required />
-</div>
-            <div className="forminput">
-              <label >S'il ya de maladie, ajouter les informations</label>
-              <input type="text" placeholder="ajouter des infos sur la maladie" value={infos} onChange={(e) => setInfos(e.target.value)} required />
-            </div>
-          <button onClick={handleClick}>Envoyer</button>
-        </form>
-            {!!snackbar && (
-              <Snackbar
-                open
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                onClose={handleCloseSnackbar}
-                autoHideDuration={6000}
-              >
-                <Alert {...snackbar} onClose={handleCloseSnackbar} />
-              </Snackbar>
-            )}
-        </div>
-      </div>
-      </div>
-      
-    </div>
-  )
+        </Snackbar>
+
+      )}
+
+    </form>
+  </div>
+)
 }
+
 export default NewAnimal;

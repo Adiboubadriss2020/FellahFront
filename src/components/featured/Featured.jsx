@@ -83,7 +83,6 @@ const Featured = () => {
         </div>
       </div>
       <div className="bottom">
-        
         <ComposedChart width={630} height={290} data={data} className='chart'>
           <XAxis dataKey="Le"  />
           <YAxis unit="kg" />

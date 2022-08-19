@@ -48,7 +48,12 @@
 display: flex;
 align-items: center;
 gap: 15px;
-
+.popup{
+    width: 2px;
+}
+.p{
+width:400px;
+}
 .viewButton{
  padding:2px 5px;
  border-radius:5px;

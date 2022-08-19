@@ -2,20 +2,23 @@ import React, { useEffect, useState } from 'react'
 import './fournisseur.scss'
 import { DataGrid} from '@mui/x-data-grid';
 import { userColumns } from '../../datatabledata';
-import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import Alert, { AlertProps } from '@mui/material/Alert';
+import CustomizedDialogs from '../../pages/new/Inputpopup/dialog'
+import NewFournisseur from '../../pages/new/NewFournisseur/NewFournisseur';
+import { allfournisseur, deletefournisseur, updatefournisseur, value } from '../../var';
 
 const useFakeMutation = () => {
   return React.useCallback(
     (user) =>
       new Promise((resolve, reject) =>
         setTimeout(() => {
-          if (user.name?.trim() === '') {
-            reject(new Error("Error while saving user: name can't be empty."));
+          console.log(user)
+          if (user.email === '') {
+            reject(new Error("Erreur: Email est obligatoire!"));
           } else {
-            resolve({ ...user, name: user.name?.toUpperCase() });
+            resolve({ ...user, email: user.email });
           }
         }, 200),
       ),
@@ -25,9 +28,6 @@ const useFakeMutation = () => {
 const Datatable = () => {
 
 const [fournisseurs, setFournisseurs] = useState([]);  
-let value=0
-  const URL = `http://localhost:8080/fournisseur/update/`;
-  const URL1 =`http://localhost:8080/fournisseur/getAll`;
 const mutateRow = useFakeMutation();
 const [snackbar, setSnackbar] = React.useState(null);
 const handleCloseSnackbar = () => setSnackbar(null);
@@ -36,9 +36,9 @@ const handleCloseSnackbar = () => setSnackbar(null);
 const handleUpdate = React.useCallback(async(data) => 
 {
 
-  axios.put( `http://localhost:8080/fournisseur/update/${data.id}`,data);
+  axios.put(updatefournisseur+`${data.id}`,data);
     const response = await mutateRow(data);
-    setSnackbar({ children: 'User successfully saved', severity: 'success' });
+    setSnackbar({ children: 'Fournisseur bien enregistrer', severity: 'success' });
     return response;
   },
     [mutateRow],
@@ -53,7 +53,7 @@ const handleUpdate = React.useCallback(async(data) =>
   const handleDelete = (id) => {
 
    console.log('Printing id', id);
-    axios.delete(`http://localhost:8080/fournisseur/delete/${id}`).catch(error => {
+    axios.delete(deletefournisseur+`${id}`).catch(error => {
       setSnackbar({ children: error.message, severity: 'error' });
     })
     setSnackbar({ children: 'Deleted successfully', severity: 'success' });
@@ -65,7 +65,7 @@ useEffect(()=>{
   getFournisseurById();
 },[])
 const getFournisseurById= async e =>{
-  const fournisseurinfos = await axios.get(URL1);
+  const fournisseurinfos = await axios.get(allfournisseur);
   setFournisseurs(fournisseurinfos.data);
   
 }
@@ -92,10 +92,9 @@ return(
 
          <div className="datatable">
            <div className="datatabletitle">Fournisseurs
-           <Link to="/fournisseurs/new/NewFournisseur"style={{textDecoration:"none"}} className="newF">
-             Nouveau Fournisseur
-             
-</Link>
+        <CustomizedDialogs title="Ajouter un fournisseur" button="Nouveau fournisseur">
+          <NewFournisseur />
+        </CustomizedDialogs>
 
            </div>
            

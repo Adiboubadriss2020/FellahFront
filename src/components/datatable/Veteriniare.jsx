@@ -2,49 +2,36 @@ import React, { useEffect, useState } from 'react'
 import './veterinaire.scss'
 import { DataGrid } from '@mui/x-data-grid';
 import { veterinairecol, visitecol } from '../../datatabledata';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import CustomizedDialogs from '../../pages/new/Inputpopup/dialog'
+import NewVeterinaire from '../../pages/new/NewVeterinaire/NewVeterinaire'
+import NewVeterinaireVisite from '../../pages/new/NewVeterinaireVisite/NewVeterinaireVisite';
+import { allveterinaire, allvisite, deleteveterinaire, deletevisite, updateveterinaire, updatevisite, value } from '../../var';
 
-const useFakeMutation = () => {
-    return React.useCallback(
-        (user) =>
-            new Promise((resolve, reject) =>
-                setTimeout(() => {
-                    if (user.name?.trim() === '') {
-                        reject(new Error("Error while saving user: name can't be empty."));
-                    } else {
-                        resolve({ ...user, name: user.name?.toUpperCase() });
-                    }
-                }, 200),
-            ),
-        [],
-    );
-};
 const Datatable = () => {
 
     const [visite, setVisite] = useState([]);
     const [veterinaire, setVeterinaire] = useState([]);
 
-    let value = 0
-    const URL1 = `http://localhost:8080/veterinaire/getAll`;
-    const URL2 = `http://localhost:8080/visite/getAll`;
-    const mutateRow = useFakeMutation();
     const [snackbar, setSnackbar] = React.useState(null);
     const handleCloseSnackbar = () => setSnackbar(null);
 
 
-    const handleUpdate = React.useCallback(async (data) => {
+    const handleUpdateVe = React.useCallback(async (data) => {
 
-        axios.put(`http://localhost:8080/visite/update/${data.id}`, data);
-        const response = await mutateRow(data);
+        axios.put(updateveterinaire+`${data.id}`, data);
         setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
-        return response;
     },
-        [mutateRow],
     );
 
+    const handleUpdateVi = React.useCallback(async (data) => {
+
+        axios.put(updatevisite+`${data.id}`, data);
+        setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
+    },
+    );
 
     const handleProcessRowUpdateError = React.useCallback((error) => {
         setSnackbar({ children: error.message, severity: 'error' });
@@ -54,7 +41,7 @@ const Datatable = () => {
     const handleDeletevisite = (id) => {
 
         console.log('Printing id', id);
-        axios.delete(`http://localhost:8080/visite/delete/${id}`).catch(error => {
+        axios.delete(deletevisite+`${id}`).catch(error => {
             setSnackbar({ children: error.message, severity: 'error' });
         })
         setSnackbar({ children: 'Bien supprimer', severity: 'success' });
@@ -64,7 +51,7 @@ const Datatable = () => {
     const handleDeleteveterinaire = (id) => {
 
         console.log('Printing id', id);
-        axios.delete(`http://localhost:8080/veterinaire/delete/${id}`).catch(error => {
+        axios.delete(deleteveterinaire+`${id}`).catch(error => {
             if (error) {
                 const timer = setTimeout(() => {
                     setSnackbar({ children: " Cet veterinaire a déja effectué une viste!", severity: 'error' });
@@ -84,11 +71,11 @@ const Datatable = () => {
         getVisite();
     }, [])
     const getVeteriniare = async e => {
-        const veterinaireinfos = await axios.get(URL1);
+        const veterinaireinfos = await axios.get(allveterinaire);
         setVeterinaire(veterinaireinfos.data);
     }
     const getVisite = async e => {
-        const visiteinfos = await axios.get(URL2);
+        const visiteinfos = await axios.get(allvisite);
         setVisite(visiteinfos.data);
     }
 
@@ -105,15 +92,37 @@ const Datatable = () => {
             )
         }
     }];
+    const veter = [{
+        field: "veterinaire_id", headerName: "Veterinaire", width: 200,
+        renderCell: (params) => {
 
+
+            return (
+                <div className="cellAction">
+                    <div  >{params.row.veterinaire.nom}</div>
+                </div>
+            )
+        }
+    }];
+    const bov = [{
+        field: "bovin_id", headerName: "Ref bovin", width: 200,
+        renderCell: (params) => {
+
+
+            return (
+                <div className="cellAction">
+                    <div  >{params.row.animal.ref}</div>
+                </div>
+            )
+        }
+    }];
     return (
 
         <div className="datatable">
             <div className="datatabletitle">Veteriniare
-                <Link to="/veterinaire/new/NewVeterinaire" style={{ textDecoration: "none", fontSize: "18px" }} className="newF">
-                    Nouveau Veteriniare
-
-                </Link>
+                <CustomizedDialogs title="Ajouter un veterianire" button="Nouveau veterinaire">
+                    <NewVeterinaire />
+                </CustomizedDialogs>
 
             </div>
 
@@ -133,12 +142,12 @@ const Datatable = () => {
 
                 onCellClick={(row) => {
                     value = row.field;
-                    if (value == "action") {
+                    if (value === "action") {
                         handleDeleteveterinaire(row.id)
                     }
                 }}
 
-                processRowUpdate={handleUpdate}
+                processRowUpdate={handleUpdateVe}
                 onProcessRowUpdateError={handleProcessRowUpdateError}
 
                 experimentalFeatures={{ newEditingApi: true }}
@@ -158,16 +167,15 @@ const Datatable = () => {
 
            
                 <div className="datatabletitle">Visite
-                <Link to="/veterinaire/new/NewVeterinaireVisite" style={{ textDecoration: "none" ,fontSize:"18px"}} className="newF">
-                        Nouveau Visite
-
-                    </Link>
+                <CustomizedDialogs title="Ajouter une visite" button="Nouvelle visite">
+                    <NewVeterinaireVisite />
+                </CustomizedDialogs>
                 
                 </div>
             <DataGrid
 
                 rows={visite}
-                columns={visitecol.concat(actionColumn)}
+                columns={visitecol.concat(veter).concat(bov).concat(actionColumn)}
                 pageSize={5}
                 disableMultipleSelection={true}
                 rowsPerPageOptions={[5]}
@@ -178,12 +186,12 @@ const Datatable = () => {
 
                 onCellClick={(row) => {
                     value = row.field;
-                    if (value == "action") {
+                    if (value === "action") {
                         handleDeletevisite(row.id)
                     }
                 }}
 
-                processRowUpdate={handleUpdate}
+                processRowUpdate={handleUpdateVi}
                 onProcessRowUpdateError={handleProcessRowUpdateError}
 
                 experimentalFeatures={{ newEditingApi: true }}

@@ -72,25 +72,8 @@ export const Sidebar = () => {
                 <span>Alimentation</span>
                       </Link>
             </li>
-            <p className="title">OBSERVATION</p>
-            <li>
-                <BarChartIcon className='icon'/>
-                <span>Statistique</span>
-            </li>
-            <li>
-                <CircleNotificationsIcon className='icon'/>
-                <span>Notification</span>
-            </li>
-           
-            <p className="title">ADMIN</p>
-            <li>
-                <AccountCircleOutlinedIcon className='icon'/>
-                <span>Profile</span>
-            </li>
-            <li>
-                <SettingsIcon className='icon'/>
-                <span>Parametres</span>
-            </li>
+                  <p className="title"></p>
+
             <li>
                 <LogoutIcon className='icon'/>
                 <span>Déconnecté</span>

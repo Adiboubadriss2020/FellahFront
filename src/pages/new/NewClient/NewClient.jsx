@@ -1,88 +1,135 @@
-import React, { useEffect, useState } from 'react';
-import './new.scss';
-import Sidebar from '../../../components/sidebar/Sidebar';
-import Navbar from '../../../components/navbar/Navbar';
-import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
+import React, {  useState } from 'react';
+import './clt.css';
 import axios from 'axios';
-import Alert, { AlertProps } from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
-export const NewClient = ({ inputs, title }) => {
-  const [file, setFile] = useState("");
-  const [nom, setNom] = useState('')
-  const [adresse, setAdresse] = useState('')
-  const [prenom, setPrenom] = useState('')
-  const [tel, setTel] = useState('')
-  const [client, setClt] = useState([])
+import FormInput from '../Inputpopup/FormInput'
+import { addclt } from '../../../var';
+export const NewClient = () => {
+ 
+
   const [snackbar, setSnackbar] = React.useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
+  const [values, setValues] = useState({
+    adresse: "",
+    date: "",   
+    nom: "",
+    prenom: "",
+    tel: "",
+    transaction: "",
+  });
 
-  const handleClick = (e) => {
+  const inputs = [
+    {
+      id: 1,
+      name: "nom",
+      type: "text",
+      placeholder: "Nom",
+      errorMessage:
+        "Le nom doit comporter de 3 à 16 caractères et ne doit pas inclure de caractère spécial !",
+      label: "Nom",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      required: true,
+    },
+    {
+      id: 2,
+      name: "prenom",
+      type: "text",
+      placeholder: "Prenom",
+      errorMessage:
+        "Le prenom doit comporter de 3 à 16 caractères et ne doit pas inclure de caractère spécial !",
+      label: "Prenom",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      required: true,
+    },
+    {
+      id: 3,
+      name: "adresse",
+      type: "text",
+      placeholder: "Adresse",
+      errorMessage:
+        "L'adresse doit comporter de 3 à 16 caractères et ne doit pas inclure de caractère spécial !",
+      label: "Adresse",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      required: true,
+    },
+    {
+      id: 4,
+      name: "tel",
+      type: "text",
+      placeholder: "Télephone: 'ex:0666666666'",
+      errorMessage:
+        "Respecter le numéro de telephone",
+      label: "Télephone",
+      pattern: "^(0[675][0-9]{8})$",
+      required: true,
+    },
+    {
+      id: 5,
+      name: "transaction",
+      type: "text",
+      placeholder: "Transaction",
+      errorMessage:
+        "Transaction invalide",
+      label: "Transaction",
+      pattern: "^([0-9]{3})$",
+      required: true,
+    },
+    {
+      id: 6,
+      name: "date",
+      type: "date",
+      placeholder: "Date",
+      errorMessage:
+        "Salaire invalide",
+      label: "Date",
+      required: true,
+    },
+  ];
+
+
+
+  const handleSubmit = (e) => {
     e.preventDefault()
-    const clt = { nom, prenom, adresse, tel }
-    console.log(clt)
-    axios.post(`http://localhost:8080/client/add`, clt).catch(error => {
+    console.log(values)
+    axios.post(addclt, values).catch(error => {
       setSnackbar({ children: error.message, severity: 'error' });
     });
 
-    setSnackbar({ children: 'Employee successfully saved', severity: 'success' });
+    setSnackbar({ children: 'Client bien enregistrer', severity: 'success' });
+    window.location.reload(false);
   }
 
-
-  useEffect(() => {
-    fetch("http://localhost:8080/client/getAll")
-      .then(res => res.json())
-      .then((result) => {
-        setClt(result);
-      }
-      )
-  }, [])
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
   return (
-    <div className="new">
-      <Sidebar />
-      <div className="newcontainer">
-        <Navbar />
-        <div className="top">
-          <h1 className="title">{title}</h1>
-        </div>
-        <div className="bottom">
-     
-          <div className="right">
-            <form action="" noValidate autoComplete="off">
+    <div >
+      <form onSubmit={handleSubmit}>
+        <h1>Client</h1>
+        {inputs.map((input) => (
+          <FormInput
+            key={input.id}
+            {...input}
+            value={values[input.name]}
+            onChange={onChange}
+          />
+        ))}
+        <button>Ajouter</button>
+        {!!snackbar && (
+          <Snackbar
+            open
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            onClose={handleCloseSnackbar}
+            autoHideDuration={6000}
+          >
+            <Alert {...snackbar} onClose={handleCloseSnackbar} />
 
-              <div className="forminput">
-                <label >Nom</label>
-                <input type="text" placeholder="Entrer le nom" value={nom} onChange={(e) => setNom(e.target.value)} />
-              </div>
-              <div className="forminput">
-                <label >Prenom</label>
-                <input type="text" placeholder="Enter le prénom" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
-              </div>
-              <div className="forminput">
-                <label >Adresse</label>
-                <input type="text" placeholder="Enter Adresse" value={adresse} onChange={(e) => setAdresse(e.target.value)} required />
-              </div>
-              <div className="forminput">
-                <label >Tel</label>
-                <input type="number"  placeholder="Enter le numero de telephone" value={tel} onChange={(e) => setTel(e.target.value)} required />
-              </div>
-              <button onClick={handleClick}>Envoyer</button>
-            </form>
-            {!!snackbar && (
-              <Snackbar
-                open
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                onClose={handleCloseSnackbar}
-                autoHideDuration={6000}
-              >
-                <Alert {...snackbar} onClose={handleCloseSnackbar} />
-              </Snackbar>
-            )}
+          </Snackbar>
 
-          </div>
-        </div>
-      </div>
+        )}
+
+      </form>
     </div>
   )
 }

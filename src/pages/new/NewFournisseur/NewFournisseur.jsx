@@ -1,80 +1,119 @@
-import React, { useEffect, useState } from 'react';
-import './newF.scss';
-import Sidebar from '../../../components/sidebar/Sidebar';
-import Navbar from '../../../components/navbar/Navbar';
-import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
+import React, {  useState } from 'react';
+import './fr.css';
 import axios from 'axios';
-import Alert, { AlertProps } from '@mui/material/Alert';
+import Alert  from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-export const NewFournisseur = ({inputs,title}) => {
-    const[file,setFile] = useState("");
-    const[nom,setNom]=useState('')
-    const[adresse,setAdresse]=useState('')
-    const[email,setEmail]=useState('')
-    const[fournisseurs,setFournisseurs]=useState([])
-    const [snackbar, setSnackbar] = React.useState(null);
-    const handleCloseSnackbar = () => setSnackbar(null);
+import FormInput from '../Inputpopup/FormInput';
+import { addfournisseur } from '../../../var';
+export const NewFournisseur = () => {
+  const [snackbar, setSnackbar] = React.useState(null);
+  const handleCloseSnackbar = () => setSnackbar(null);
+  const [values, setValues] = useState({
+    adresse: "",
+    email: "",
+    date: "",
+    nom: "",
+    transaction: "",
+  });
 
-    const handleClick=(e)=>{
-      e.preventDefault()
-      const fournisseur={nom,email,adresse}
-      console.log(fournisseur)
-      axios.post(`http://localhost:8080/fournisseur/add`, fournisseur).catch(error => {
-        setSnackbar({ children: error.message, severity: 'error' });
-      });
+  const inputs = [
+    {
+      id: 1,
+      name: "nom",
+      type: "text",
+      placeholder: "Nom",
+      errorMessage:
+        "Le nom doit comporter de 3 à 16 caractères et ne doit pas inclure de caractère spécial !",
+      label: "Nom",
+      pattern: "^[A-Za-z]{3,16}$",
+      required: true,
+    },
+    {
+      id: 2,
+      name: "adresse",
+      type: "text",
+      placeholder: "Adresse",
+      errorMessage:
+        "L'adresse doit comporter de 3 à 16 caractères et ne doit pas inclure de caractère spécial !",
+      label: "Adresse",
+      pattern: "^[A-Za-z0-9'\.\-\s\,]{3,16}$",
+      required: true,
+    },
+    {
+      id: 3,
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      errorMessage:
+        "Respecter l'email!",
+      label: "Email",
+      required: true,
+    },
+    {
+      id: 4,
+      name: "transaction",
+      type: "text",
+      placeholder: "Transaction",
+      errorMessage:
+        "Transaction invalide",
+      label: "Transaction",
+      pattern: "^([0-9]{3,10})$",
+      required: true,
+    },
+    {
+      id: 5,
+      name: "date",
+      type: "date",
+      placeholder: "Date",
+      errorMessage:
+        "Respecter la date",
+      label: "Date",
+      required: true,
+    },
+  ];
 
-      setSnackbar({ children: 'Fournisseur est bien enregistrer', severity: 'success' });
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios.post(addfournisseur, values).catch(error => {
+      setSnackbar({ children: error.message, severity: 'error' });
+    });
+
+    setSnackbar({ children: 'Fournissur bien enregistrer', severity: 'success' });
+    window.location.reload(false);
   }
 
-  useEffect(()=>{
-    fetch("http://localhost:8080/fourniseeur/getAll")
-    .then(res=>res.json())
-    .then((result)=>{
-      setFournisseurs(result);
-    }
-  )
-  },[])
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
   return (
-    <div className="new">
-      <Sidebar/>
-      <div className="newcontainer">
-        <Navbar/>
-      <div className="top">
-      <h1 className="title">{title}</h1>
-      </div>
-      <div className="bottom">
-  
-        <div className="right">
-        <form action=""  noValidate autoComplete="off">
+    <div >
+      <form onSubmit={handleSubmit}>
+        <h1>Fournisseur</h1>
+        {inputs.map((input) => (
+          <FormInput
+            key={input.id}
+            {...input}
+            value={values[input.name]}
+            onChange={onChange}
+          />
+        ))}
+        <button>Ajouter</button>
+        {!!snackbar && (
+          <Snackbar
+            open
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            onClose={handleCloseSnackbar}
+            autoHideDuration={6000}
+          >
+            <Alert {...snackbar} onClose={handleCloseSnackbar} />
 
-    <div className="forminput">
- <label >Nom</label>
- <input type="text" placeholder="Enter le nom" value={nom} onChange={(e)=>setNom(e.target.value)}/>
-</div>
-<div className="forminput">
- <label >Email</label>
- <input type="text" placeholder="Enter Email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-</div>
-<div className="forminput">
- <label >Adresse</label>
- <input type="text" placeholder="Enter Adresse" value={adresse} onChange={(e)=>setAdresse(e.target.value)} required/>
-</div>
-          <button onClick={handleClick}>Envoyer</button>
-        </form>
-        
-            {!!snackbar && (
-              <Snackbar
-                open
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                onClose={handleCloseSnackbar}
-                autoHideDuration={6000}
-              >
-                <Alert {...snackbar} onClose={handleCloseSnackbar} />
-              </Snackbar>
-            )}
-        </div>
-      </div>
-      </div>
+          </Snackbar>
+
+        )}
+
+      </form>
     </div>
   )
 }

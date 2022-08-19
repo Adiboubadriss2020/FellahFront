@@ -1,128 +1,127 @@
-import React, { useEffect, useState } from 'react';
-import './new.scss';
+import React, { useState } from 'react';
+import './vetevst.css';
+import FormInput from '../Inputpopup/FormInput'
 import axios from 'axios';
-import moment from 'moment';
-import Select from 'react-select';
-import Sidebar from '../../../components/sidebar/Sidebar';
-import Navbar from '../../../components/navbar/Navbar';
-import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import SearchBar from '../../../components/Search/SearchBar';
-export const NewVeterinaireVisite = ({ inputs, title }) => {
+import { addvisite, checkanimal, checkveterinaire } from '../../../var';
+export const NewVeterinaireVisite = () => {
+    var [veterinaire, setVeterinare] = useState()
+    var [animal, setAnimal] = useState() 
     const [prix_visite, setPrix_visite] = useState('')
     const [date_visite, setDate_visite] = useState('')
-    const [msg, setMsg] = useState([])
-    var [animal, setAnimal] = useState() 
-
-    const [ref, setRef] = useState('')
-    const URL1 = `http://localhost:8080/animal/getAll`;
-    var [veterinaire, setVeterinare] = useState()
-    const newdate = moment(date_visite).format('YYYY-MM-DD')
     const [snackbar, setSnackbar] = React.useState(null);
     const handleCloseSnackbar = () => setSnackbar(null);
-  
+    const visite = {
+        date_visite,
+        prix_visite,
+        animal,
+        veterinaire
+    }
+    const inputs = [
+        {
+            id: 1,
+            name: "date_visite",
+            type: "Date",
+            placeholder: "Date visite",
+            errorMessage:
+                "Respecter la date!",
+            label: "Date visite",
+            onChange: (e) => setDate_visite(e.target.value),
+            required: true,
+        },
+        {
+            id: 2,
+            name: "prix_visite",
+            type: "text",
+            placeholder: "Prix de la visite",
+            errorMessage:
+                "Enter un prix valide!",
+            label: "Prix de la visite",
+            pattern: "^([0-9]{2,10})$",
+            onChange: (e) => setPrix_visite(e.target.value),
+            required: true,
+        },
+        {
+            id: 3,
+            name: "animal",
+            type: "text",
+            placeholder: "Enter le Ref du bovin!",
+            label: "Ref",
+            onChange: (e) => setAnimal(e.target.value),
+            required: true,
+        },
+        {
+            id: 4,
+            name: "veterinaire",
+            type: "text",
+            placeholder: "Enter le nom du veterinaire!",
+            label: "Nom veterinaire",
+            onChange: (e) => setVeterinare(e.target.value),
+            required: true,
+            
+        },
+    ];
 
-    const handleClick = (e) => {
+
+
+    const handleSubmit = (e) => {
         e.preventDefault()
-        const visite = {
-            date_visite,
-            prix_visite,
-            animal,
-            veterinaire
-        }
 
         //Check object bovin
-        axios.get(`http://localhost:8080/animal/check/${animal}`).then(function (response) { 
+        
+        axios.get(checkanimal+`${animal}`).then(function (response) {
             visite.animal = response.data
+           
 
             //Check object alimentation
-            axios.get(`http://localhost:8080/veterinaire/check/${veterinaire}`)
-                .then(function (response) {
-                    visite.veterinaire=response.data               
-                    console.log(visite.veterinaire.nom)
-                    axios.post(`http://localhost:8080/visite/add`, visite).catch(error => {
-                            setSnackbar({ children: error.message, severity: 'error' });
-                        });
-                        setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
-
-                    
-                    
+           
+            axios.get(checkveterinaire+`${veterinaire}`).then(function (response) {
+                 
+                visite.veterinaire = response.data
+                console.log(visite)
+                axios.post(addvisite, visite).catch(error => {
+                        setSnackbar({ children: error.message, severity: 'error' });
+                    });
+                    setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
+                  //  window.location.reload(false);
 
                 }).catch(error => {
                     setSnackbar({ children: error.message + ", Verifier le nom de veterinaire", severity: 'error' });
-                });           
-                    
-           /* */
-
-
+                });
         }).catch(error => {
-            setSnackbar({ children: error.message+", Verifier l'identifiant du Bovin", severity: 'error' });
-        });      
+            setSnackbar({ children: error.message + ", Verifier l'identifiant du Bovin", severity: 'error' });
+        });
 
-            
+    }
 
- //Check Quantity
-
-
-
-       
-                        
-      /*  
-       
-  //  window.location.reload(false);
-    */
-}
-
-    useEffect(() => {  
-    }, [])
     return (
-        <div className="new">
-            <Sidebar />
-            <div className="newcontainer">
-                <Navbar />
-                <div className="top">
-                    <h1 className="title">{title}</h1>
-                </div>
-                <div className="bottom">
+        <div >
+            <form onSubmit={handleSubmit}>
+                <h1>Visite médicale</h1>
+                {inputs.map((input) => (
+                    <FormInput
+                        key={input.id}
+                        {...input}
+                        visite={visite[input.name]}
+                        //onChange={onChange}
+                    />
+                ))}
+                <button>Ajouter</button>
+                {!!snackbar && (
+                    <Snackbar
+                        open
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                        onClose={handleCloseSnackbar}
+                        autoHideDuration={6000}
+                    >
+                        <Alert {...snackbar} onClose={handleCloseSnackbar} />
 
-                    <div className="right">
-                        <form action="" noValidate autoComplete="off">
+                    </Snackbar>
 
-                            <div className="forminput">
-                                <label >Bovin Ref</label>
-                                
-                                <input type="number" placeholder="Enter le reference du bovin'" value={animal} onChange={(e) => setAnimal(e.target.value)} required />
-                            </div>
-                            <div className="forminput">
-                                <label >Nom de veterinaire</label>
-                                <input type="text" placeholder="Enter le nom de veterinaire'" value={veterinaire} onChange={(e) => setVeterinare(e.target.value)} required />
-                            </div>
-                            <div className="forminput">
-                                <label >Date de visite</label>
-                                <input type="date" placeholder="Enter la date de visite" value={newdate} onChange={(e) => setDate_visite(e.target.value)} required />
-                            </div>
-                            <div className="forminput">
-                                <label >Prix de visite</label>
-                                <input type="number" placeholder="Prix de visite" value={prix_visite} onChange={(e) => setPrix_visite(e.target.value)} required />
-                            </div>
-                           
-                            <button onClick={handleClick}>Envoyer</button>
-                        </form>
-                        {!!snackbar && (
-                            <Snackbar
-                                open
-                                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                                onClose={handleCloseSnackbar}
-                                autoHideDuration={6000}
-                            >
-                                <Alert {...snackbar} onClose={handleCloseSnackbar} />
-                            </Snackbar>
-                        )}
-                    </div>
-                </div>
-            </div>
+                )}
 
+            </form>
         </div>
     )
 }

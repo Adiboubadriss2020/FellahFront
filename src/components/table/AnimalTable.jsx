@@ -7,6 +7,7 @@ import Popup from '../popup/Popup';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import HelpIcon from '@mui/icons-material/Help';
+import CustomizedDialogs from '../../pages/new/Inputpopup/dialog';
 const useFakeMutation = () => {
   return React.useCallback(
     (user) =>
@@ -29,7 +30,6 @@ const useFakeMutation = () => {
   const animal = {
     stat
   }
-  var newStr = stat.replace(/(.{200})/g, "$1\n")
 
 //popup stuff
     const [isOpen, setIsOpen] = useState(false);
@@ -78,26 +78,16 @@ const useFakeMutation = () => {
     }
   }];
   const actionColumn2 = [{
-    field: "infos", headerName: "Infos", width: 100,
+    field: "infos", headerName: "Infos", width: 180,
     renderCell: (params) => {
       
       return (
         <div className="App">
             <div className="cellAction">
-            <input
-              className="deleteButton"
-              type="button"
-              value="Détails"
-              onClick={togglePopup}
-              
-            />
-            {isOpen && <Popup
-              content={<>
+            <CustomizedDialogs style={{ border: "0px solid" }} button="Détails">       
                 <h2>Informations</h2>
-                  <p>{stat.replace(/(.{20})/g, "$1\n")} </p>         
-              </>}
-              handleClose={togglePopup}
-            />}
+                  <p>{stat}</p>         
+            </CustomizedDialogs>
           </div>
 
             </div>

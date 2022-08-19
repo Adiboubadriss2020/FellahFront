@@ -1,0 +1,88 @@
+package com.fellah.api.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fellah.api.model.Fournisseur;
+import com.fellah.api.repository.FournisseurRepository;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class FournisseurServiceImp implements FournisseurService {
+
+
+    @Autowired
+    private FournisseurRepository fr;
+
+	@Override
+	public Fournisseur saveFournisseur(Fournisseur fournisseur) {
+        return fr.save(fournisseur);
+		
+	}
+
+	@Override
+	public List<Fournisseur> getAllFournisseurs() {
+        return fr.findAll();
+
+	}
+
+	@Override
+	public List<Object> getLastSevenDays(int d) {
+	   	LocalDate today=LocalDate.now();
+
+		 LocalDate sevenDaysAgoDate = LocalDate.now().minusDays(d);
+	        return this.fr.sevendays(sevenDaysAgoDate,today);
+
+	}
+	
+
+	@Override
+	public Fournisseur findkarim() {
+		Fournisseur f = fr.findkarim();
+		return f;
+	}
+
+	@Override
+    public Fournisseur updateFr(Long id, Fournisseur f) {
+
+        if (fr.findById(id).isPresent()){
+            Fournisseur existingF = fr.findById(id).get();
+            if(f.getNom() ==""|| f.getTransaction()==0|| f.getEmail()=="" || f.getAdresse()=="") {
+            	System.exit(0);
+            }
+            existingF.setNom(f.getNom());
+            existingF.setEmail(f.getEmail());
+            existingF.setAdresse(f.getAdresse());
+            existingF.setTransaction(f.getTransaction());
+            existingF.setDate(f.getDate());
+
+            Fournisseur updatedF = fr.save(existingF);
+
+            return new Fournisseur(updatedF.getId(), updatedF.getNom(),
+                    updatedF.getEmail(), updatedF.getAdresse(),updatedF.getTransaction(),updatedF.getDate());
+        }else{
+            return null;
+        }
+    }
+
+
+	@Override
+	public void delete(Long id) {
+		fr.deleteById(id);
+		
+	}
+
+	@Override
+	public Long allF() {
+		return fr.all();
+	}
+
+	@Override
+	public Fournisseur update(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

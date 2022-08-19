@@ -29,7 +29,7 @@ export const animalcol = [
 export const animalmalade = [
   { field: "ref", headerName: "Identifiant", editable: true, width: 200 },
   { field: "date_achat", headerName: "Date d'achat", type: "date",  width: 200 },
-  { field: "origine", headerName: "Origine",  width: 100 },
+  { field: "origine", headerName: "Race",  width: 100 },
   { field: "poid_achat", headerName: "Poid d'achat",  width: 150 },
   { field: "prix_achat", headerName: "Prix d'achat",  width: 150 },
 
@@ -49,18 +49,18 @@ export const alimentationcol = [
 
 ];
 export const alimentationanimal = [
-  { field: "quantite", headerName: "Quantité par jour", type: "number", editable: true, width: 200 },
-  { field: "date_alimentation", headerName: "Date d'alimentation", type: "date", editable: true, width: 200 },
-  { field: "alimentation", headerName: "Bovin Id", type: "number", width: 200 },
+  { field: "quantite", headerName: "Quantité par jour", type: "number",  width: 200 },
+  { field: "date_alimentation", headerName: "Date d'alimentation", type: "date",  width: 200 },
+  
 ];
 
 export const visitecol = [
-  { field: "id", headerName: "Numéro", type: "text", width: 100 },
-  { field: "date_visite", headerName: "Date de visite", type: "text", editable: true, width: 200 },
+  { field: "id", headerName: "Numéro", type: "text", width: 200 },
+  { field: "date_visite", headerName: "Date de visite", type: "date", editable: true, width: 200 },
   { field: "prix_visite", headerName: "Prix",type:"date", editable: true, width: 200 },
 ];
 export const veterinairecol = [
-  { field: "nom", headerName: "text", type: "text", width: 100 },
+  { field: "nom", headerName: "Nom", type: "text", width: 200 },
   { field: "telephone", headerName: "Description", type: "text", editable: true, width: 200 },
   { field: "transaction", headerName: "Transaction", type: "texte", editable: true, width: 200 },
   { field: "date", headerName: "Date de transaction", type: "date", editable: true, width: 200 },

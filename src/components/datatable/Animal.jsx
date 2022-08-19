@@ -1,47 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import './animal.scss'
 import { DataGrid } from '@mui/x-data-grid';
-import { animalcol, userColumns } from '../../datatabledata';
-import { Link, useParams } from 'react-router-dom';
+import { animalcol} from '../../datatabledata';
 import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import Popup from 'reactjs-popup';
+import NewAnimal from '../../pages/new/NewAnimal/NewAnimal'
+import CustomizedDialogs from '../../pages/new/Inputpopup/dialog'
 import 'reactjs-popup/dist/index.css';
-const useFakeMutation = () => {
-  return React.useCallback(
-    (user) =>
-      new Promise((resolve, reject) =>
-        setTimeout(() => {
-          if (user.name?.trim() === '') {
-            reject(new Error("Error while saving user: name can't be empty."));
-          } else {
-            resolve({ ...user, name: user.name?.toUpperCase() });
-          }
-        }, 200),
-      ),
-    [],
-  );
-};
+import { allanimal, deleteanimal, updateanimal, value } from '../../var';
+
 const Datatable = () => {
 
   const [Animal, setAnimal] = useState([]);
-  let value = 0
-  const URL = `http://localhost:8080/animal/update/`;
-  const URL1 = `http://localhost:8080/animal/getAll`;
-  const mutateRow = useFakeMutation();
   const [snackbar, setSnackbar] = React.useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
 
 
+
   const handleUpdate = React.useCallback(async (data) => {
-    console.log(data)
-    axios.put(`http://localhost:8080/animal/update/${data.id}`, data);
-    const response = await mutateRow(data);
-    setSnackbar({ children: 'Animal successfully saved', severity: 'success' });
-    return response;
+    axios.put(updateanimal+`${data.id}`, data);
+    setSnackbar({ children: 'Animal bien enregistrer', severity: 'success' }); 
   },
-    [mutateRow],
   );
 
 
@@ -53,7 +33,7 @@ const Datatable = () => {
   const handleDelete = (id) => {
 
     console.log('Printing id', id);
-    axios.delete(`http://localhost:8080/animal/delete/${id}`).catch(error => {
+    axios.delete(deleteanimal+`${id}`).catch(error => {
       setSnackbar({ children: error.message, severity: 'error' });
     })
     setSnackbar({ children: 'Deleted successfully', severity: 'success' });
@@ -65,7 +45,7 @@ const Datatable = () => {
     getAnimalById();
   }, [])
   const getAnimalById = async e => {
-    const animalinfos = await axios.get(URL1);
+    const animalinfos = await axios.get(allanimal);
     setAnimal(animalinfos.data);
   }
 
@@ -85,14 +65,11 @@ const Datatable = () => {
   }];
  
   return (
-
-
     <div className="datatable">
-      <div className="datatabletitle">Animal
-        <Link to="/bovin/new/NewAnimal" style={{ textDecoration: "none" }} className="newF">
-          New Animal
-
-        </Link>
+      <div className="datatabletitle">Bovin
+        <CustomizedDialogs title="Ajouter un bovin" button="Nouveau bovin">
+          <NewAnimal />
+        </CustomizedDialogs>
         
       </div>
       <DataGrid
@@ -109,7 +86,7 @@ const Datatable = () => {
         
         onCellClick={(row) => {
           value = row.field;
-          if (value == "action") {
+          if (value === "action") {
             handleDelete(row.id)
           }
         }}

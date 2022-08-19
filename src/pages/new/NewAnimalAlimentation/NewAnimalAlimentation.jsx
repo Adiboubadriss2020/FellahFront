@@ -1,109 +1,118 @@
-import React, { useEffect, useState } from 'react';
-import './new.scss';
+import React, { useState } from 'react';
+import './almb.css';
 import axios from 'axios';
-import moment from 'moment';
-import Select from 'react-select';
-import Sidebar from '../../../components/sidebar/Sidebar';
-import Navbar from '../../../components/navbar/Navbar';
-import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import Alert from '@mui/material/Alert';
+import FormInput from '../Inputpopup/FormInput'
 import Snackbar from '@mui/material/Snackbar';
-import SearchBar from '../../../components/Search/SearchBar';
-export const NewAnimalAlimentation = ({ inputs, title }) => {
+import { addalimentationanimal, addalimentationanimal_check, check_alimentation_qnt } from '../../../var';
+export const NewAnimalAlimentation = () => {
     const [quantite, setQuantite] = useState('')
     const [date_alimentation, setDate_alimentation] = useState('')
-    const [msg, setMsg] = useState([])
-    var [animal, setAnimal] = useState() 
-
-    const [ref, setRef] = useState('')
-    const URL1 = `http://localhost:8080/animal/getAll`;
     var [alimentation, setAlimentation] = useState()
-    const newdate = moment(date_alimentation).format('YYYY-MM-DD')
     const [snackbar, setSnackbar] = React.useState(null);
     const handleCloseSnackbar = () => setSnackbar(null);
-  
+    const alimentation_animal = {
+        quantite,
+        date_alimentation,
+        alimentation
+    }
+    const inputs = [
+        {
+            id: 1,
+            name: "alimentation",
+            type: "text",
+            placeholder: "Le Ref de l'alimentation",
+            errorMessage:
+                "Ref n'existe pas!",
+            pattern: "^([0-9]{1,10})$",
+            label: "Ref alimentation",
+            onChange: (e) => setAlimentation(e.target.value),
+            required: true,
+        },
+        {
+            id: 2,
+            name: "quantite",
+            type: "text",
+            placeholder: "Quantite",
+            errorMessage:
+                "Respecter la Quantité!",
+            label: "Quantite",
+            pattern: "^([0-9]{1,10})$",
+            onChange: (e) => setQuantite(e.target.value),
+            required: true,
+        },
+        {
+            id: 3,
+            name: "date_alimentation",
+            type: "date",
+            placeholder: "Enter la date d'alimentation",
+            label: "Date",
+            onChange: (e) => setDate_alimentation(e.target.value),
+            required: true,
+        },
+    ];
 
-    const handleClick = (e) => {
+
+
+    const handleSubmit = (e) => {
         e.preventDefault()
-        const alimentation_animal = {
-            date_alimentation,
-            quantite,
-            alimentation
-        }
 
-            //Check object alimentation
-            axios.get(`http://localhost:8080/alimentation/check/${alimentation}`)
-                .then(function (response) {
-                    alimentation_animal.alimentation=response.data
-                 
-                    console.log(alimentation_animal.alimentation.quantite_arrivage)
-                    console.log(alimentation_animal.quantite)
-                    if (alimentation_animal.alimentation.quantite_arrivage == 0 || alimentation_animal.alimentation.quantite_arrivage < alimentation_animal.quantite) {
-                        setSnackbar({ children:" Alimentation insuffisant! ", severity: 'error' });
-                    }else{
-                        alimentation_animal.alimentation = response.data
-                        axios.post(`http://localhost:8080/alimentationanimal/add`, alimentation_animal).catch(error => {
-                            setSnackbar({ children: error.message, severity: 'error' });
-                        });
-                        setSnackbar({ children: 'Alimentation bien enregistrer', severity: 'success' });
-                        axios.put(`http://localhost:8080/alimentation/updatequantite/${alimentation_animal.quantite}/${alimentation_animal.alimentation.id}`).catch(error => {
-                            setSnackbar({ children: error.message + " quantite problem!", severity: 'error' });
-                        });
+        //Check object bovin
 
-                    }
-                    
+        axios.get(addalimentationanimal_check+`${alimentation}`)
+            .then(function (response) {
+                alimentation_animal.alimentation = response.data
 
-                }).catch(error => {
-                    setSnackbar({ children: error.message + ", Verifier l'identifiant de l'alimentation", severity: 'error' });
-                });           
-                    
-           /* */
+                if (alimentation_animal.alimentation.quantite_arrivage === 0 || alimentation_animal.alimentation.quantite_arrivage < alimentation_animal.quantite) {
+                    setSnackbar({ children: " Alimentation insuffisant! ", severity: 'error' });
+                } else {
+                    alimentation_animal.alimentation = response.data
+                    axios.post(addalimentationanimal, alimentation_animal).catch(error => {
+                        setSnackbar({ children: error.message, severity: 'error' });
+                    });
+                    setSnackbar({ children: 'Alimentation bien enregistrer', severity: 'success' });
+                    axios.put(check_alimentation_qnt+`${alimentation_animal.quantite}/${alimentation_animal.alimentation.id}`).catch(error => {
+                        setSnackbar({ children: error.message + " quantite problem!", severity: 'error' });
+                    });
 
-}
+                }
+            }).catch(error => {
+                setSnackbar({ children:", Verifier l'identifiant de l'alimentation", severity: 'error' });
+            });
 
-    useEffect(() => {  
-    }, [])
+        /* */
+
+    
+
+    }
+
     return (
-        <div className="new">
-            <Sidebar />
-            <div className="newcontainer">
-                <Navbar />
-                <div className="top">
-                    <h1 className="title">{title}</h1>
-                </div>
-                <div className="bottom">
+        <div >
+            <form onSubmit={handleSubmit}>
+                <h1>Alimentation Bovin</h1>
+                {inputs.map((input) => (
+                    <FormInput
+                        key={input.id}
+                        {...input}
+                        alimentation_animal={alimentation_animal[input.name]}
+                    //onChange={onChange}
+                    />
+                ))}
+                <button>Ajouter</button>
+                {!!snackbar && (
+                    <Snackbar
+                        open
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                        onClose={handleCloseSnackbar}
+                        autoHideDuration={6000}
+                    >
+                        <Alert {...snackbar} onClose={handleCloseSnackbar} />
 
-                    <div className="right">
-                        <form action="" noValidate autoComplete="off">
-                            <div className="forminput">
-                                <label >Alimentation</label>
-                                <input type="number" placeholder="Enter le réference de l'alimentation'" value={alimentation} onChange={(e) => setAlimentation(e.target.value)} required />
-                            </div>
-                            <div className="forminput">
-                                <label >Quantite</label>
-                                <input type="number" placeholder="Enter la quantité" value={quantite} onChange={(e) => setQuantite(e.target.value)} required />
-                            </div>
-                            <div className="forminput">
-                                <label >Date d'alimentation</label>
-                                <input type="date" placeholder="Date d'alimentation" value={newdate} onChange={(e) => setDate_alimentation(e.target.value)} required />
-                            </div>
-                           
-                            <button onClick={handleClick}>Envoyer</button>
-                        </form>
-                        {!!snackbar && (
-                            <Snackbar
-                                open
-                                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                                onClose={handleCloseSnackbar}
-                                autoHideDuration={6000}
-                            >
-                                <Alert {...snackbar} onClose={handleCloseSnackbar} />
-                            </Snackbar>
-                        )}
-                    </div>
-                </div>
-            </div>
+                    </Snackbar>
 
+                )}
+
+            </form>
         </div>
     )
 }

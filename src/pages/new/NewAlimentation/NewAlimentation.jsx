@@ -1,107 +1,117 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './new.scss';
 import axios from 'axios';
-import moment from 'moment';
-import Sidebar from '../../../components/sidebar/Sidebar';
-import Navbar from '../../../components/navbar/Navbar';
-import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import { setRef } from '@mui/material';
-
-export const NewAlimentation = ({ inputs, title }) => {
-    const [type_alimentation, setType_alimentation] = useState('')
-    const [date_arrivage, setDate_arrivage] = useState('')
-    const [quantite_arrivage, setQuantite_arrivage] = useState('')
-    const [prix_arrivage, setPrix] = useState('')
-    const [ref, setRef] = useState('')
-    const [alimentation, setAlimentation] = useState([])
-    var k =""
-    const newdate = moment(date_arrivage).format('YYYY-MM-DD')
+import FormInput from '../Inputpopup/FormInput';
+import { addalimentation } from '../../../var';
+export const NewAlimentation = () => {
+    //const [alimentation, setAlimentation] = useState([])
     const [snackbar, setSnackbar] = React.useState(null);
     const handleCloseSnackbar = () => setSnackbar(null);
+    const [alimentation, setAlimentation] = useState({
+        ref:"",
+        date_arrivage:"",
+        prix_arrivage:"",
+        quantite_arrivage:"",
+        type_alimentation:"",
+    });
 
+    const inputs = [
+        {
+            id: 1,
+            name: "ref",
+            type: "text",
+            placeholder: "Ref d'alimentation",
+            errorMessage:
+                "Respecter le Ref, exp: 054451",
+            label: "Ref",
+            pattern: "^([0-9]{3,10})$",
+            required: true,
+        },
+        {
+            id: 2,
+            name: "date_arrivage",
+            type: "date",
+            placeholder: "Date d'arrivage",
+            label: "Date d'arrivage",
+            required: true,
+        },
+        {
+            id: 3,
+            name: "prix_arrivage",
+            type: "text",
+            placeholder: "Prix d'arrivage",
+            errorMessage:
+                "Respecter le prix d'arrivage!",
+            pattern: "^([0-9']{2,10})$",
+            label: "Prix d'arrivage",
+            required: true,
+        },
+        {
+            id: 4,
+            name: "type_alimentation",
+            type: "text",
+            placeholder: "Type d'alimentation",
+            errorMessage:
+                "Respecter le type d'alimentation!",
+            label: "Type d'alimentation",
+            pattern: "^[A-Za-z]{3,16}$",
+            required: true,
+        },
+        {
+            id: 5,
+            name: "quantite_arrivage",
+            type: "text",
+            placeholder: "Quantite ",
+            errorMessage:
+                "Respecter la Quantité!",
+            label: "Quantite (kg)",
+            pattern: "^([0-9']{1,10})$",
+            required: true,
+        },
+    ];
 
-    const handleClick = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        const alimentation = {
-            ref,
-            date_arrivage,
-            prix_arrivage,
-            quantite_arrivage,
-            type_alimentation,         
-        }
-
-        console.log(ref)
-
-       
-
-        axios.post(`http://localhost:8080/alimentation/add`, alimentation).catch(error => {
+        axios.post(addalimentation, alimentation).catch(error => {
             setSnackbar({ children: "Ref déja existe!", severity: 'error' });
         });
 
         setSnackbar({ children: 'Alimentation bien enregistrer', severity: 'success' });
     }
 
-    useEffect(() => {
-        fetch("http://localhost:8080/alimentation/getAll")
-            .then(res => res.json())
-            .then((result) => {
-                setAlimentation(result);
 
-            }
-            )
-    }, [])
+    const onChange = (e) => {
+        setAlimentation({ ...alimentation, [e.target.name]: e.target.value });
+    };
     return (
-        <div className="new">
-            <Sidebar />
-            <div className="newcontainer">
-                <Navbar />
-                <div className="top">
-                    <h1 className="title">{title}</h1>
-                </div>
-                <div className="bottom">
+        <div >
+            <form onSubmit={handleSubmit}>
+                <h1>Alimentation</h1>
+                {inputs.map((input) => (
+                    <FormInput
+                        key={input.id}
+                        {...input}
+                        alimentation={alimentation[input.name]}
+                        onChange={onChange}
+                    />
+                ))}
+                <button>Ajouter</button>
+                {!!snackbar && (
+                    <Snackbar
+                        open
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                        onClose={handleCloseSnackbar}
+                        autoHideDuration={6000}
+                    >
+                        <Alert {...snackbar} onClose={handleCloseSnackbar} />
 
-                    <div className="right">
-                        <form action="" noValidate autoComplete="off">
+                    </Snackbar>
 
-                            <div className="forminput">
-                                <label >Ref d'alimentation</label>
-                                <input type="number" placeholder="Number..." value={ref} onChange={(e) => setRef(e.target.value)} required />
-                            </div>
-                            <div className="forminput">
-                                <label >Type d'alimentation</label>
-                                <input type="text" placeholder="Type d'alimentation" value={type_alimentation} onChange={(e) => setType_alimentation(e.target.value)} required />
-                            </div>
-                            <div className="forminput">
-                                <label >Date d'arrivage</label>
-                                <input type="date" placeholder="Date d'arrivage'" value={newdate} onChange={(e) => setDate_arrivage(e.target.value)} required />
-                            </div>
-                            <div className="forminput">
-                                <label >Quantité d'arrivage</label>
-                                <input type="number" placeholder="Enter la quantité" value={quantite_arrivage} onChange={(e) => setQuantite_arrivage(e.target.value)} required />
-                            </div>
-                            <div className="forminput">
-                                <label >Prix</label>
-                                <input type="number" placeholder="Enter le prix" value={prix_arrivage} onChange={(e) => setPrix(e.target.value)} required />
-                            </div>
-                           
-                            <button onClick={handleClick}>Envoyer</button>
-                        </form>
-                        {!!snackbar && (
-                            <Snackbar
-                                open
-                                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                                onClose={handleCloseSnackbar}
-                                autoHideDuration={6000}
-                            >
-                                <Alert {...snackbar} onClose={handleCloseSnackbar} />
-                            </Snackbar>
-                        )}
-                    </div>
-                </div>
-            </div>
+                )}
 
+            </form>
         </div>
     )
 }

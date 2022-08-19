@@ -1,92 +1,135 @@
-import React, { useEffect, useState } from 'react';
-import './new.scss';
+import React, {useState } from 'react'
 import axios from 'axios';
-import Sidebar from '../../../components/sidebar/Sidebar';
-import Navbar from '../../../components/navbar/Navbar';
-import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
-import Alert, { AlertProps } from '@mui/material/Alert';
+import "./emp.css"
+import FormInput from '../Inputpopup/FormInput'
+import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import { addemployee } from '../../../var';
+const NewEmployee = () => {
+    const [snackbar, setSnackbar] = React.useState(null);
+    const handleCloseSnackbar = () => setSnackbar(null);
+    const [values, setValues] = useState({
+        adresse: "",
+        age: "",
+        date: "",
+        nom: "",
+        prenom:"",
+        salaire: "",
+    });
 
-export const NewEmployee = ({inputs,title}) => {
-    const[file,setFile] = useState("");
-    const[nom,setNom]=useState('')
-    const[adresse,setAdresse]=useState('')
-    const[prenom,setPrenom]=useState('')
-  const [age, setAge] = useState('')
-  const [salaire, setSalaire] = useState('')
-    const[employee,setEmp]=useState([])
-  const [snackbar, setSnackbar] = React.useState(null);
-  const handleCloseSnackbar = () => setSnackbar(null);
+    const inputs = [
+        {
+            id: 1,
+            name: "nom",
+            type: "text",
+            placeholder: "Nom",
+            errorMessage:
+                "Le nom doit comporter de 3 à 16 caractères et ne doit pas inclure de caractère spécial !",
+            label: "Nom",
+            pattern: "^[A-Za-z0-9]{3,16}$",
+            required: true,
+        },
+        {
+            id: 2,
+            name: "prenom",
+            type: "text",
+            placeholder: "Prenom",
+            errorMessage:
+                "Le prenom doit comporter de 3 à 16 caractères et ne doit pas inclure de caractère spécial !",
+            label: "Prenom",
+            pattern: "^[A-Za-z0-9]{3,16}$",
+            required: true,
+        },
+        {
+            id: 3,
+            name: "adresse",
+            type: "text",
+            placeholder: "Adresse",
+            errorMessage:
+                "L'adresse doit comporter de 3 à 16 caractères et ne doit pas inclure de caractère spécial !",
+            label: "Adresse",
+            pattern: "^[A-Za-z0-9]{3,16}$",
+            required: true,
+        },
+        {
+            id: 4,
+            name: "age",
+            type: "text",
+            placeholder: "Age",
+            errorMessage:
+                "Respecter l'age!",
+            label: "Age",
+            pattern: "^(1[89]|[2-9]{2})$",
+            required: true,
+        },
+        {
+            id: 5,
+            name: "salaire",
+            type: "text",
+            placeholder: "Salaire",
+            errorMessage:
+                "Salaire invalide",
+            label: "Salaire",
+            pattern: "^([0-9]{3})$",
+            required: true,
+        },
+        {
+            id: 6,
+            name: "date",
+            type: "date",
+            placeholder: "Date",
+            errorMessage:
+                "Respecter la date",
+            label: "Date",
+            required: true,
+        },
+    ];
 
-    const handleClick=(e)=>{
-      e.preventDefault()
-      const emp={nom,prenom,age,adresse,salaire}
-      console.log(emp)
-      axios.post(`http://localhost:8080/employee/add`, emp).catch(error => {
-        setSnackbar({ children: error.message, severity: 'error' });
-      });
-
-      setSnackbar({ children: 'Employee successfully saved', severity: 'success' });
-    }
+   
   
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(values)
+        axios.post(addemployee,values).catch(error => {
+            setSnackbar({ children: error.message, severity: 'error' });
+        });
 
-  useEffect(()=>{
-    fetch("http://localhost:8080/employee/getAll")
-    .then(res=>res.json())
-    .then((result)=>{
-      setEmp(result);
+        setSnackbar({ children: 'Employé bien enregistrer', severity: 'success' });
+        window.location.reload(false);
     }
-  )
-  },[])
-  return (
-    <div className="new">
-      <Sidebar/>
-      <div className="newcontainer">
-        <Navbar/>
-      <div className="top">
-      <h1 className="title">{title}</h1>
-      </div>
-      <div className="bottom">
-       
-        <div className="right">
-        <form action=""  noValidate autoComplete="off">
-    <div className="forminput">
- <label >Nom</label>
- <input type="text" placeholder="Entrer le nom" value={nom} onChange={(e)=>setNom(e.target.value)}/>
-</div>
-<div className="forminput">
- <label >Prenom</label>
- <input type="text" placeholder="Enter le prénom" value={prenom} onChange={(e)=>setPrenom(e.target.value)}/>
-</div>
-<div className="forminput">
- <label >Adresse</label>
- <input type="text" placeholder="Enter Adresse" value={adresse} onChange={(e)=>setAdresse(e.target.value)} required/>
-</div>
-<div className="forminput">
-  <label >Age</label>
-  <input type="number" placeholder="Enter l'age" value={age} onChange={(e) => setAge(e.target.value)} required />
-</div>
-<div className="forminput">
-  <label >Salaire</label>
-  <input type="number" placeholder="Enter Le salaire" value={salaire} onChange={(e) => setSalaire(e.target.value)} required />
-</div>
-          <button onClick={handleClick}>Envoyer</button>
-        </form>
-            {!!snackbar && (
-              <Snackbar
-                open
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                onClose={handleCloseSnackbar}
-                autoHideDuration={6000}
-              >
-                <Alert {...snackbar} onClose={handleCloseSnackbar} />
-              </Snackbar>
-            )}
+    
+    const onChange = (e) => {
+        setValues({ ...values, [e.target.name]: e.target.value });
+    };
+    return (
+        <div >
+            <form onSubmit={handleSubmit}>
+                <h1>Employé</h1>
+                {inputs.map((input) => (
+                    <FormInput
+                        key={input.id}
+                        {...input}
+                        value={values[input.name]}
+                        onChange={onChange}
+                    />
+                ))}
+                <button>Ajouter</button>
+                {!!snackbar && (
+                    <Snackbar
+                        open
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                        onClose={handleCloseSnackbar}
+                        autoHideDuration={6000}
+                    >
+                        <Alert {...snackbar} onClose={handleCloseSnackbar} />
+                        
+                    </Snackbar>
+                    
+                )}
 
+            </form>
         </div>
-      </div>
-      </div>
-    </div>
-  )
+    )
 }
+
 export default NewEmployee;

@@ -17,6 +17,7 @@ const Datatable = () => {
      const handleCloseSnackbar = () => setSnackbar(null);
      const [Alimentation, setAlimentation] = useState([]);
      const [Alimentationanimal, setAlimentationanimal] = useState([]);
+     
     const handleUpdate = React.useCallback(async (data) => {
         axios.put(updatealiemntation+`${data.id}`, data);
         setSnackbar({ children: 'Alimentation bien enregister', severity: 'success' });
@@ -31,33 +32,40 @@ const Datatable = () => {
     const handleDeletealimentationanimal = (id) => {
 
         console.log('Printing id', id);
-        axios.delete(deletealimentationanimal+`${id}`).catch(error => {
-            setSnackbar({ children: error.message, severity: 'error' });
-        })
-        setSnackbar({ children: 'Bien supprimer', severity: 'success' });
-        window.location.reload(false);
+        if (window.confirm('Êtes-vous sûr de vouloir enregistrer cet élément dans la base de données ?')) {
+            axios.delete(deletealimentationanimal + `${id}`).catch(error => {
+                setSnackbar({ children: error.message, severity: 'error' });
+            })
+            setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+            window.location.reload(false);
+        } else {
+            console.log('Thing was not saved to the database.');
+        }
+
+       
 
     } 
     const handleDeletealimentation = (id) => {
 
         console.log('Printing id', id);
-        axios.delete(deletealimentation+`${id}`).catch(error => {
-            if (error) {
-                const timer = setTimeout(() => {
-                    setSnackbar({ children: " Ce type d'alimentation est utilisé dans l'alimentation animal", severity: 'error' });
-                }, 500);
-                
-                return () => clearTimeout(timer);       
-            }
-               
-                    setSnackbar({ children: 'Bien supprimer', severity: 'success' });
-          
-                window.location.reload(false);
-                
-             
+        if (window.confirm('Êtes-vous sûr de vouloir enregistrer cet élément dans la base de données ?')) {
+            axios.delete(deletealimentation + `${id}`).catch(error => {
+                if (error) {
+                    const timer = setTimeout(() => {
+                        setSnackbar({ children: " Ce type d'alimentation est utilisé dans l'alimentation animal", severity: 'error' });
+                    }, 500);
 
-        })
-        
+                    return () => clearTimeout(timer);
+                }
+                setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+                window.location.reload(false);
+            })
+
+            setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+        } else {
+            console.log('Thing was not saved to the database.');
+        }
+       
        
 
     }

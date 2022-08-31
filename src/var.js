@@ -35,6 +35,8 @@ export const updateveterinaire = `http://localhost:8080/veterinaire/update/`;
 export const allveterinaire = `http://localhost:8080/veterinaire/getAll/`;
 export const addveterinaire = `http://localhost:8080/veterinaire/add/`;
 export const deleteveterinaire = `http://localhost:8080/veterinaire/delete/`;
+export const visitemedicale = `http://localhost:8080/visite/delete/`;
+
 // Visite
 export const updatevisite = `http://localhost:8080/visite/update/`;
 export const allvisite = `http://localhost:8080/visite/getAll/`;

@@ -7,7 +7,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert, { AlertProps } from '@mui/material/Alert';
 import CustomizedDialogs from '../../pages/new/Inputpopup/dialog'
 import NewFournisseur from '../../pages/new/NewFournisseur/NewFournisseur';
-import { allfournisseur, deletefournisseur, updatefournisseur, value } from '../../var';
+import { allfournisseur, deletefournisseur, updatefournisseur } from '../../var';
 
 const useFakeMutation = () => {
   return React.useCallback(
@@ -26,7 +26,7 @@ const useFakeMutation = () => {
   );
 };
 const Datatable = () => {
-
+let value =0
 const [fournisseurs, setFournisseurs] = useState([]);  
 const mutateRow = useFakeMutation();
 const [snackbar, setSnackbar] = React.useState(null);
@@ -53,12 +53,16 @@ const handleUpdate = React.useCallback(async(data) =>
   const handleDelete = (id) => {
 
    console.log('Printing id', id);
-    axios.delete(deletefournisseur+`${id}`).catch(error => {
-      setSnackbar({ children: error.message, severity: 'error' });
-    })
-    setSnackbar({ children: 'Deleted successfully', severity: 'success' });
-    window.location.reload(false);
-
+    if (window.confirm('Êtes-vous sûr de vouloir enregistrer cet élément dans la base de données ?')) {
+      axios.delete(deletefournisseur + `${id}`).catch(error => {
+        setSnackbar({ children: "Fournisseur active!", severity: 'error' });
+      })
+      setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+     // window.location.reload(false);    
+    } else {
+      console.log('Thing was not saved to the database.');
+    }
+  
   }
 
 useEffect(()=>{
@@ -80,7 +84,7 @@ return(
 
 <div className="cellAction">
 
-    <div className="deleteButton" >Delete</div>  
+    <div className="deleteButton" >Supprimer</div>  
 
 </div>
  

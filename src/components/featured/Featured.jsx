@@ -17,8 +17,6 @@ import {
 const Featured = () => {
 
   var filter = 0
-
-  const URL1 = `http://localhost:8080/alimentation_animal/alimentation`;
   const [data, setData] = useState([
     {
       Le: "2022-05-05",
@@ -47,7 +45,7 @@ const Featured = () => {
       })
       .then(function (myJson) {
         let v = myJson
-        console.log(v)
+        console.log("ja:",v)
         clearInput()
         for (let index = 0; index < v.length; index++) {
           const element = v[index];
@@ -65,22 +63,21 @@ const Featured = () => {
   }
 
   useEffect(() => {
-    filter = document.getElementById('filter')
+    filter = document.getElementById('filter1')
     if (filter)
       filter.addEventListener('change', changer)
   }, []) 
 
   return (
-    <div className='featured'>
+    <div className='chart'>
       <div className="top">
+        <select id="filter1">
+          <option value="3">Dernier 3 jours</option>
+          <option value="7">Dernier semaine</option>
+          <option value="30">Dernier mois</option>
+        </select>
         <div className="title">Alimentation</div>
-        <div className="selecbox">
-          <select id="filter">
-            <option value="3">Dernier 3 jours</option>
-            <option value="7">Dernier semaine</option>
-            <option value="30">Dernier mois</option>
-          </select>
-        </div>
+        
       </div>
       <div className="bottom">
         <ComposedChart width={630} height={290} data={data} className='chart'>

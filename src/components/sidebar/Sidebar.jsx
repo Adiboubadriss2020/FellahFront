@@ -10,16 +10,18 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import HealingIcon from '@mui/icons-material/Healing';
+import { UserContext } from '../../Usercontext';
 export const Sidebar = () => {
     const { dispatch } = useContext(DarkModeContext);
+    const navigate = useNavigate();
   return (
     <div className='sidebar'>
         <div className='top'>
-        <Link to="/"style={{textDecoration:"none"}}>
+              <Link to="/Doshboard"style={{textDecoration:"none"}}>
         <span className="logo">GAS</span>
         </Link>
                
@@ -30,7 +32,7 @@ export const Sidebar = () => {
             <p className="title">MAIN</p>
             <li>
                 <DashboardIcon className='icon'/>
-                <Link to="/"style={{textDecoration:"none"}}>
+                      <Link to="/Doshboard"style={{textDecoration:"none"}}>
                 <span>Dashboard</span>
                 </Link>
             </li>
@@ -76,7 +78,9 @@ export const Sidebar = () => {
 
             <li>
                 <LogoutIcon className='icon'/>
+                      <Link to="/login" style={{ textDecoration: "none" }}>
                 <span>Déconnecté</span>
+                      </Link>
             </li>
         </ul>
         </div>

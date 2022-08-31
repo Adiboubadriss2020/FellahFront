@@ -14,10 +14,8 @@ export const NewVeterinaire = () => {
     const [snackbar, setSnackbar] = React.useState(null);
     const handleCloseSnackbar = () => setSnackbar(null);
     const [values, setValues] = useState({
-        date: "",
         nom: "",
         telephone: "",
-        transaction: "",
     });
 
     const inputs = [
@@ -41,27 +39,6 @@ export const NewVeterinaire = () => {
                 "Respecter le numéro de telephone",
             label: "Télephone",
             pattern: "^(0[675][0-9]{8})$",
-            required: true,
-        },
-        {
-            id: 3,
-            name: "transaction",
-            type: "text",
-            placeholder: "Transaction",
-            errorMessage:
-                "Salaire invalide",
-            label: "Transaction",
-            pattern: "^([0-9]{3})$",
-            required: true,
-        },
-        {
-            id: 4,
-            name: "date",
-            type: "date",
-            placeholder: "Date",
-            errorMessage:
-                "Salaire invalide",
-            label: "Date",
             required: true,
         },
     ];

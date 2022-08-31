@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Chart from '../../components/chart/Chart';
 import Featured from '../../components/featured/Featured';
 import Navbar from '../../components/navbar/Navbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import AnimalTable from '../../components/table/AnimalTable';
 import Widget from '../../components/widgets/Widget';
+import { UserContext } from '../../Usercontext';
 import './home.scss'
+import { useNavigate } from "react-router-dom";
+
 export const Home = () => {
   
+
+
   return (
     <div className="home">
       <Sidebar/>

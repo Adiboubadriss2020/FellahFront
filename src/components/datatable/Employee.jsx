@@ -11,6 +11,7 @@ import CustomizedDialogs from '../../pages/new/Inputpopup/dialog'
 import { allemloyee, deleteemployee, updateemployee, value } from '../../var';
 
 const Datatable = () => {
+  let value = 0
 
   const [Employee, setEmployee] = useState([]);
   const [snackbar, setSnackbar] = React.useState(null);
@@ -34,11 +35,16 @@ const Datatable = () => {
   const handleDelete = (id) => {
 
     console.log('Printing id', id);
-    axios.delete(deleteemployee+`${id}`).catch(error => {
-      setSnackbar({ children: error.message, severity: 'error' });
-    })
-    setSnackbar({ children: 'Deleted successfully', severity: 'success' });
-    window.location.reload(false);
+    if (window.confirm('Êtes-vous sûr de vouloir enregistrer cet élément dans la base de données ?')) {
+      axios.delete(deleteemployee + `${id}`).catch(error => {
+        setSnackbar({ children: error.message, severity: 'error' });
+      })
+      setSnackbar({ children: 'Deleted successfully', severity: 'success' });
+      window.location.reload(false);
+    } else {
+      console.log('Thing was not saved to the database.');
+    }
+   
 
   }
 
@@ -62,7 +68,7 @@ const Datatable = () => {
         <div className="cellAction">
           <Link to="/fournisseurs/test" style={{ textDecoration: "none" }}>
           </Link>
-          <div className="deleteButton" >Delete</div>
+          <div className="deleteButton" >Supprimer</div>
 
         </div>
 

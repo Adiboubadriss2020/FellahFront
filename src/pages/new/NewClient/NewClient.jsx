@@ -12,11 +12,9 @@ export const NewClient = () => {
   const handleCloseSnackbar = () => setSnackbar(null);
   const [values, setValues] = useState({
     adresse: "",
-    date: "",   
     nom: "",
     prenom: "",
     tel: "",
-    transaction: "",
   });
 
   const inputs = [
@@ -64,27 +62,7 @@ export const NewClient = () => {
       pattern: "^(0[675][0-9]{8})$",
       required: true,
     },
-    {
-      id: 5,
-      name: "transaction",
-      type: "text",
-      placeholder: "Transaction",
-      errorMessage:
-        "Transaction invalide",
-      label: "Transaction",
-      pattern: "^([0-9]{3})$",
-      required: true,
-    },
-    {
-      id: 6,
-      name: "date",
-      type: "date",
-      placeholder: "Date",
-      errorMessage:
-        "Salaire invalide",
-      label: "Date",
-      required: true,
-    },
+ 
   ];
 
 

@@ -11,10 +11,8 @@ const NewEmployee = () => {
     const [values, setValues] = useState({
         adresse: "",
         age: "",
-        date: "",
         nom: "",
         prenom:"",
-        salaire: "",
     });
 
     const inputs = [
@@ -60,27 +58,6 @@ const NewEmployee = () => {
                 "Respecter l'age!",
             label: "Age",
             pattern: "^(1[89]|[2-9]{2})$",
-            required: true,
-        },
-        {
-            id: 5,
-            name: "salaire",
-            type: "text",
-            placeholder: "Salaire",
-            errorMessage:
-                "Salaire invalide",
-            label: "Salaire",
-            pattern: "^([0-9]{3})$",
-            required: true,
-        },
-        {
-            id: 6,
-            name: "date",
-            type: "date",
-            placeholder: "Date",
-            errorMessage:
-                "Respecter la date",
-            label: "Date",
             required: true,
         },
     ];

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 
 import  Home  from '../src/pages/home/Home';
 import Login from '../src/pages/login/Login';
+import Register from '../src/pages/login/Register';
 import FournisseurList from './pages/list/Fournisseur';
 import AnimalList from './pages/list/Animal';
 import AlimentationList from './pages/list/Alimentation';
@@ -26,15 +27,19 @@ import VeterinaireList from './pages/list/Veteriniare';
 import NewVeterinaire from './pages/new/NewVeterinaire/NewVeterinaire';
 import NewVeterinaireVisite from './pages/new/NewVeterinaireVisite/NewVeterinaireVisite';
 import NewAnimalAlimentation from './pages/new/NewAnimalAlimentation/NewAnimalAlimentation';
+
 function App() {
+
   //const { darkMode } = useContext(npmDarkModeContext);
   return (
     <div /*className={darkMode ? "app dacrk" : "app"}*/>
+   
      <BrowserRouter>
     <Routes>
       <Route path='/'>
-      <Route index element={<Home/>}/>
-      <Route path='login' element={<Login/>}/>
+      <Route index element={<Register/>}/>
+            <Route path='Login' element={<Login />} />
+      <Route path='Doshboard' element={<Home />}/>
       
       <Route path='fournisseurs'>
           <Route index element={<FournisseurList/>}/>
@@ -71,6 +76,8 @@ function App() {
 
             </Route>
       </Route>
+
+
     </Routes>
   </BrowserRouter>
     </div>

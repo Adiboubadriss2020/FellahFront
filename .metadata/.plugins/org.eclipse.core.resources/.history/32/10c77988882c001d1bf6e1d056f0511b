@@ -1,0 +1,41 @@
+package com.fellah.api.service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fellah.api.model.Alimentation;
+import com.fellah.api.model.Animal;
+import com.fellah.api.model.Charge;
+import com.fellah.api.model.Client;
+import com.fellah.api.model.Employee;
+import com.fellah.api.model.Fournisseur;
+import com.fellah.api.model.Veterinaire;
+import com.fellah.api.model.Visite;
+import com.fellah.api.repository.ChargeRepository;
+@Service
+public class ChargeImpService implements ChargeService {
+	 @Autowired
+	    private ChargeRepository ch;
+	@Transactional
+	public Charge SaveCharge(Charge charge) {
+		 return ch.save(charge);
+		
+	}
+	@Override
+	public List<Object> getfilter(int d) {
+		LocalDate today=LocalDate.now();
+		LocalDate sevenDaysAgoDate = LocalDate.now().minusDays(d);
+	        return this.ch.getfilter(sevenDaysAgoDate,today);
+
+	}
+	@Override
+	public Long summ() {
+		return ch.summ();
+	}
+
+}

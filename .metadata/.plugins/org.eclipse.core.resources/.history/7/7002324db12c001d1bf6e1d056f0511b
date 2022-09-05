@@ -1,0 +1,150 @@
+package com.fellah.api.service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fellah.api.model.Animal;
+import com.fellah.api.repository.AnimalRepository;
+import com.fellah.api.repository.ChargeRepository;
+@Service
+public class AnimalImpService implements AnimalService {
+
+	  	@Autowired
+	    private AnimalRepository ar;
+	  	@Autowired
+	    private ChargeRepository chrg;
+	@Override
+	public List<Animal> getAllAnimals() {
+		return ar.findAll();
+
+	}
+	@Override
+	public List<Object> getfilter(int d) {
+		LocalDate today=LocalDate.now();
+		LocalDate sevenDaysAgoDate = LocalDate.now().minusDays(d);
+	        return this.ar.getfilter(sevenDaysAgoDate,today);
+
+	}
+	@Override
+	public List<Object> gain(int d) {
+		LocalDate today=LocalDate.now();
+		LocalDate sevenDaysAgoDate = LocalDate.now().minusDays(d);
+			List<Object> a = this.ar.gain(sevenDaysAgoDate,today);
+			List<Object> b = chrg.gain(sevenDaysAgoDate,today);
+			System.out.println(a+' '+b.get(0));
+	        return this.ar.gain(sevenDaysAgoDate,today);
+
+	}
+	@Override
+	public Animal findkarim() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Animal update(Long id,Animal a) {
+		
+		if (ar.findById(id).isPresent()){
+            Animal animal = ar.findById(id).get();
+            if(a.getOrigine()=="" || a.getPoid_achat()==0 || a.getPoid_vente()==0 || a.getPrix_achat()==0|| a.getPrix_vente()==0) {
+            	return animal;
+            }
+            System.out.println(a.getDate_achat());
+            animal.setDate_achat(a.getDate_achat());
+            animal.setDate_vente(a.getDate_vente());
+            animal.setOrigine(a.getOrigine());
+            animal.setPoid_achat(a.getPoid_achat());
+            animal.setPoid_vente(a.getPoid_vente());
+            animal.setPrix_achat(a.getPrix_achat());
+            animal.setRef(a.getRef());
+            animal.setPrix_vente(a.getPrix_vente());
+            Animal updatedA = ar.save(animal);
+
+            return updatedA;
+        }else{
+            return null;
+        }
+		
+		
+	}
+
+	@Override
+	public void delete(Long id) {
+		ar.deleteById(id);
+		
+	}
+
+	@Override
+	public Animal saveAnimal(Animal animal) {
+		
+		return ar.save(animal);
+	}
+
+	@Override
+	public Long allAn() {
+		
+		return ar.all();
+	}
+
+	@Override
+	public List<Animal> etat() {
+		
+		return ar.getetat();
+	}
+
+
+	@Override
+	public Animal updatestat(Long id, Animal a) {
+		
+		if (ar.findById(id).isPresent()){
+            Animal animal = ar.findById(id).get();
+
+            animal.setEtat(a.getEtat());
+
+            Animal updatedA = ar.save(animal);
+
+            return updatedA;
+        }else{
+            return null;
+        }
+	}
+
+	@Override
+	public void updatestat2() {
+		ar.updatestat2();
+		
+	}
+
+	@Override
+	public void updatestat3() {
+		ar.updatestat3();
+	}
+
+	@Override
+	public void updateinfos(Long id) {
+		
+		ar.updateinfos(id);
+	}
+
+	@Override
+	public Animal days() {
+		
+		return ar.days();
+	}
+
+	@Override
+	public Animal check(Long ref) {
+		
+		return ar.check(ref);
+	}
+
+	@Override
+	public Long getLastSevenDays() {
+		
+		return ar.sevendays();
+	}
+
+}

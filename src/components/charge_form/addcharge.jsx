@@ -105,7 +105,7 @@ const Addcharge= () =>{
                 .then(res => {
                     const persons = res.data;
                     charge.employee = persons
-                    axios.post(api + `/charge/add`, charge).catch(error => {
+                    axios.post(api+`/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 
@@ -113,11 +113,11 @@ const Addcharge= () =>{
                 })
         }
         else if (a === "client") {
-            axios.get(api +`/${a}/find/${i}`)
+            axios.get(api+`/${a}/find/${i}`)
                 .then(res => {
                     const persons = res.data;
                     charge.client = persons
-                    axios.post(api + `/charge/add`, charge).catch(error => {
+                    axios.post(api+`/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 
@@ -125,7 +125,7 @@ const Addcharge= () =>{
                 })
          }
         else if (a === "veterinaire") { 
-            axios.get(api +`/${a}/find/${i}`)
+            axios.get(api+`/${a}/find/${i}`)
                 .then(res => {
                     const persons = res.data;
                     charge.veterianire = persons
@@ -137,11 +137,11 @@ const Addcharge= () =>{
                 })
          }
         else if (a === "alimentation") {
-            axios.get(api +`/${a}/find/${i}`)
+            axios.get(api+`/${a}/find/${i}`)
             .then(res => {
                 const persons = res.data;
                 charge.alimentation = persons
-                axios.post(api +`/charge/add`, charge).catch(error => {
+                axios.post(api+`/charge/add`, charge).catch(error => {
                     setSnackbar({ children: error.message, severity: 'error' });
                 });
 

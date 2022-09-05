@@ -8,13 +8,14 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import GroupIcon from '@mui/icons-material/Group';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { api } from '../../var';
 
 const Widget = ({type}) => {
 
-    const URL1 = `http://localhost:8080/fournisseur/allF`;
-    const URL2 = `http://localhost:8080/animal/allAn`;
-    const URL3 = `http://localhost:8080/employee/allEmp`;
-    const URL4 = `http://localhost:8080/client/allClt`;
+    const URL1 = api+`/fournisseur/allF`;
+    const URL2 = api + `http://localhost:8080/animal/allAn`;
+    const URL3 = api + `http://localhost:8080/employee/allEmp`;
+    const URL4 = api + `http://localhost:8080/client/allClt`;
 
     const [animal, setAnimal] = useState([]);
     const [fournisseur, setFournisseur] = useState([]);

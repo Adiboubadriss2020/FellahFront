@@ -129,7 +129,7 @@ const Addcharge= () =>{
                 .then(res => {
                     const persons = res.data;
                     charge.veterianire = persons
-                    axios.post(api + `/charge/add`, charge).catch(error => {
+                    axios.post(api +`/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 

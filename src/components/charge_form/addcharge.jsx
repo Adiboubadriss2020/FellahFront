@@ -3,6 +3,7 @@ import './style.scss';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import { api } from '../../var';
 
 const Addcharge= () =>{
     const [snackbar, setSnackbar] = React.useState(null);
@@ -33,7 +34,7 @@ const Addcharge= () =>{
         clearInput()
         setFruit(e.target.value)
         const a = e.target.value.split(" ").pop()
-                axios.get(`http://localhost:8080/${a}/getAll`)
+                axios.get(api+`/${a}/getAll`)
             .then(res => {
                 const persons = res.data;
                 console.log(persons)
@@ -87,11 +88,11 @@ const Addcharge= () =>{
         const a = fruit.split(" ").pop()
 
         if (a === "fournisseur") { 
-            axios.get(`http://localhost:8080/${a}/find/${i}`)
+            axios.get(api+`/${a}/find/${i}`)
                 .then(res => {
                     const persons = res.data;
                     charge.fournisseur = persons
-                    axios.post(`http://localhost:8080/charge/add`, charge).catch(error => {
+                    axios.post(api+`/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 
@@ -100,11 +101,11 @@ const Addcharge= () =>{
         }
         else if (a === "employee") { 
                 console.log(a)
-            axios.get(`http://localhost:8080/${a}/find/${i}`)
+            axios.get(api +`/${a}/find/${i}`)
                 .then(res => {
                     const persons = res.data;
                     charge.employee = persons
-                    axios.post(`http://localhost:8080/charge/add`, charge).catch(error => {
+                    axios.post(api + `/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 
@@ -112,11 +113,11 @@ const Addcharge= () =>{
                 })
         }
         else if (a === "client") {
-            axios.get(`http://localhost:8080/${a}/find/${i}`)
+            axios.get(api +`/${a}/find/${i}`)
                 .then(res => {
                     const persons = res.data;
                     charge.client = persons
-                    axios.post(`http://localhost:8080/charge/add`, charge).catch(error => {
+                    axios.post(api + `/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 
@@ -124,11 +125,11 @@ const Addcharge= () =>{
                 })
          }
         else if (a === "veterinaire") { 
-            axios.get(`http://localhost:8080/${a}/find/${i}`)
+            axios.get(api +`/${a}/find/${i}`)
                 .then(res => {
                     const persons = res.data;
                     charge.veterianire = persons
-                    axios.post(`http://localhost:8080/charge/add`, charge).catch(error => {
+                    axios.post(api + `/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 
@@ -136,11 +137,11 @@ const Addcharge= () =>{
                 })
          }
         else if (a === "alimentation") {
-            axios.get(`http://localhost:8080/${a}/find/${i}`)
+            axios.get(api +`/${a}/find/${i}`)
             .then(res => {
                 const persons = res.data;
                 charge.alimentation = persons
-                axios.post(`http://localhost:8080/charge/add`, charge).catch(error => {
+                axios.post(api +`/charge/add`, charge).catch(error => {
                     setSnackbar({ children: error.message, severity: 'error' });
                 });
 

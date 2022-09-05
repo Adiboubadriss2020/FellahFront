@@ -18,9 +18,10 @@ export const animalcol = [
     { field: "date_achat", headerName: "Date d'achat", type: "date",editable: true, width: 150 },
     { field: "date_vente", headerName: "Date de vente", type: "date", editable: true, width: 150 },
     { field: "origine", headerName: "Origine", editable: true, width:100 },
-  { field: "poid_achat", headerName: "Poid d'achat", editable: true, width: 200 },
-  { field: "poid_vente", headerName: "Poid de vente", editable: true, width: 200 }, 
+  { field: "poid_achat", headerName: "Poid d'achat", editable: true, width: 100 },
+  { field: "poid_vente", headerName: "Poid de vente", editable: true, width: 100 }, 
     { field: "prix_achat", headerName: "Prix d'achat", editable: true, width:200 },
+  { field: "prix_vente", headerName: "Prix de vente", editable: true, width: 200 },
     //{ field: "infos", headerName: "Infos", editable: true, width: 300 },
 
 
@@ -58,6 +59,6 @@ export const visitecol = [
   { field: "date_visite", headerName: "Date de visite", type: "date", editable: true, width: 300 },
 ];
 export const veterinairecol = [
-  { field: "nom", headerName: "Nom", type: "text", width: 400 },
+  { field: "nom", headerName: "Nom", type: "text", editable: true, width: 400 },
   { field: "telephone", headerName: "Description", type: "text", editable: true, width: 400 },
 ];

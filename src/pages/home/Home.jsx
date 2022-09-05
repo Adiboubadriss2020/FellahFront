@@ -8,11 +8,19 @@ import Widget from '../../components/widgets/Widget';
 import { UserContext } from '../../Usercontext';
 import './home.scss'
 import { useNavigate } from "react-router-dom";
+import Summ from '../../components/chart/Summ';
+import Featured2 from '../../components/featured/Featured2';
 
 export const Home = () => {
-  
-
-
+  const navigate = useNavigate();
+ useEffect(() => {
+    if (localStorage.getItem("user") === null) {
+      navigate("/Login");
+    }
+    else{
+      console.log("")
+    }
+  }, [])
   return (
     <div className="home">
       <Sidebar/>
@@ -24,14 +32,12 @@ export const Home = () => {
           <Widget type="employees"/>
           <Widget type="client"/>
         </div>
+        
         <div className="charts">
         <Featured/>
         <Chart aspect={2.6/1} title="Les Charges"/>
         </div>
-       <div className="listcontainer">
-         <div className="listtitle">List </div>
-          <AnimalTable />
-       </div>
+        <Featured2 />
       </div>
     </div>
   )

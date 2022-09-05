@@ -14,6 +14,13 @@ export const deletealimentationanimal = `http://localhost:8080/alimentationanima
 export const updateanimal = `http://localhost:8080/animal/update/`;
 export const allanimal = `http://localhost:8080/animal/getAll/`;
 export const addanimal = `http://localhost:8080/animal/add/`;
+export const sumanimal = `http://localhost:8080/animal/sum/`;
+export const ventedate = `http://localhost:8080/animal/sum/`;
+export const sumcharge = `http://localhost:8080/charge/sum/`;
+export const charges = `http://localhost:8080/charge/days/`;
+export const animals = `http://localhost:8080/animal/days/`;
+export const sumgaincharge = `http://localhost:8080/charge/sum/days/`;
+export const sumgainanimal = `http://localhost:8080/animal/sum/days/`;
 export const deleteanimal = `http://localhost:8080/animal/delete/`;
 // Fournisseur
 export const updatefournisseur = `http://localhost:8080/fournisseur/update/`;

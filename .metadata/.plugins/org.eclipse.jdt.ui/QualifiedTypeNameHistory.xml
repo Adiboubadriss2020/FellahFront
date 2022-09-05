@@ -5,7 +5,6 @@
     <fullyQualifiedTypeName name="com.fellah.api.service.VeterinaireService"/>
     <fullyQualifiedTypeName name="com.fellah.api.service.VisiteService"/>
     <fullyQualifiedTypeName name="com.fellah.api.service.AlimentationService"/>
-    <fullyQualifiedTypeName name="com.fellah.api.service.AnimalService"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
     <fullyQualifiedTypeName name="com.fellah.api.model.Alimentation"/>
     <fullyQualifiedTypeName name="com.fellah.api.model.Animal"/>
@@ -13,7 +12,6 @@
     <fullyQualifiedTypeName name="com.fellah.api.model.Employee"/>
     <fullyQualifiedTypeName name="com.fellah.api.model.Veterinaire"/>
     <fullyQualifiedTypeName name="com.fellah.api.model.Visite"/>
-    <fullyQualifiedTypeName name="com.fellah.api.repository.ChargeRepository"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
@@ -26,7 +24,6 @@
     <fullyQualifiedTypeName name="java.lang.Character"/>
     <fullyQualifiedTypeName name="com.fellah.api.controller.ChargeController"/>
     <fullyQualifiedTypeName name="javax.persistence.CascadeType"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
@@ -39,4 +36,8 @@
     <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <fullyQualifiedTypeName name="com.fellah.api.service.AnimalService"/>
+    <fullyQualifiedTypeName name="com.fellah.api.repository.ChargeRepository"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Collection"/>
 </qualifiedTypeNameHistroy>

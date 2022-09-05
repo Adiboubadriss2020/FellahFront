@@ -30,7 +30,7 @@ import NewAnimalAlimentation from './pages/new/NewAnimalAlimentation/NewAnimalAl
 
 function App() {
 
-  //const { darkMode } = useContext(npmDarkModeContext);
+ 
   return (
     <div /*className={darkMode ? "app dacrk" : "app"}*/>
    

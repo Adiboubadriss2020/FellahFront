@@ -31,11 +31,12 @@ const Datatable = () => {
 
         axios.put(updatevisite+`${data.id}`, data);
         setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
+        window.location.reload(false);
     },
     );
 
     const handleProcessRowUpdateError = React.useCallback((error) => {
-        setSnackbar({ children: error.message, severity: 'error' });
+     //   setSnackbar({ children: error.message, severity: 'error' });
     }, []);
 
 
@@ -57,7 +58,7 @@ const Datatable = () => {
     const handleDeleteveterinaire = (id) => {
 
         console.log('Printing id', id);
-        if (window.confirm('Êtes-vous sûr de vouloir enregistrer cet élément dans la base de données ?')) {
+        if (window.confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
             axios.delete(deleteveterinaire + `${id}`).catch(error => {
                 if (error) {
                     const timer = setTimeout(() => {
@@ -132,7 +133,7 @@ const Datatable = () => {
 
         <div className="datatable">
             <div className="datatabletitle">Veteriniare
-                <CustomizedDialogs title="Ajouter un veterianire" button="Nouveau veterinaire">
+                <CustomizedDialogs title="Ajouter un veterianire" button="Ajouter">
                     <NewVeterinaire />
                 </CustomizedDialogs>
 
@@ -179,7 +180,7 @@ const Datatable = () => {
 
            
                 <div className="datatabletitle">Visite
-                <CustomizedDialogs title="Ajouter une visite" button="Nouvelle visite">
+                <CustomizedDialogs title="Ajouter une visite" button="Ajouter">
                     <NewVeterinaireVisite />
                 </CustomizedDialogs>
                 

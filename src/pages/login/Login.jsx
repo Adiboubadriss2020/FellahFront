@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react'
 import FormInput from '../new/Inputpopup/FormInput';
 import axios from 'axios';
-import "./F.css"
+import "./login.scss"
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+ import Sidebar from '../../components/sidebar/Sidebar';
 export const Login = (va) => {
-
+  localStorage.clear()
   const navigate = useNavigate();
   const [snackbar, setSnackbar] = React.useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
@@ -52,6 +53,7 @@ export const Login = (va) => {
       },*/
 
   ];
+
   const handleSubmit = (e) => {
     e.preventDefault()
     axios.post(`http://localhost:8080/account/login`,registeru).then(val => {
@@ -64,6 +66,8 @@ export const Login = (va) => {
         setSnackbar({ children: "Vérifier vos donner!", severity: 'error' });
       }
       else{
+        localStorage.setItem('user', va.name)
+        console.log(localStorage.getItem('user'))
         setSnackbar({ children: va, severity: 'success' });
         navigate("/Doshboard");
       }
@@ -79,7 +83,7 @@ export const Login = (va) => {
     <div style={{ marginTop: '100px' }}>
       <div style={{ alignItems: 'center', alignContent: 'center', marginLeft: '500px' }}>
         <form onSubmit={handleSubmit}>
-          <h1 style={{ marginRight: '550px' }}>Login</h1>
+          <h1 style={{ marginRight: '580px', fontFamily: "Helvetica Neue"+','+"Helvetica, Arial"}}>Login</h1>
           {inputs.map((input) => (
             <FormInput
               key={input.id}

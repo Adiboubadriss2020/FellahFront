@@ -7,12 +7,14 @@
     .top{
         height: 50px;
         display: flex;
+   
         align-items: center;
         justify-content: center;
         .logo{
-            font-size: 20px;
+            font-size: 30px;
+                font-family: "Helvetica Neue", Helvetica, Arial;
             font-weight: bold;
-            color: rgb(67, 202, 67);
+            color: rgb(80, 187, 109);
         }
         
         
@@ -49,10 +51,11 @@
             font-size: 18px;
         }
         span{
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             color: rgba(142, 187, 157, 0.959);
             margin-left: 10px;
+          
         }
     }
     }

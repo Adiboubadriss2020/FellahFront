@@ -4,6 +4,9 @@ import './chart.scss'
 import { AreaChart,Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import CustomizedDialogs from './dialog';
 import Addcharge from '../charge_form/addcharge';
+import Sum from './Summ';
+import Summ from './Summ';
+import { charges } from '../../var';
 
 const Chart = ({aspect, title}) => {
   var filter=0
@@ -20,7 +23,7 @@ const Chart = ({aspect, title}) => {
   };
 
   const getseven = (id1) => {
-    fetch(`http://localhost:8080/charge/days/${id1}/`
+    fetch(charges+`${id1}`
       , {
         headers: {
           'Content-Type': 'application/json',
@@ -58,11 +61,12 @@ const Chart = ({aspect, title}) => {
   return (
     
     <div className='chart'>
+ 
       <div className="selecbox">
         <select id="filter">
-          <option value="3">Dernier 3 jours</option>
-          <option value="7">Dernier semaine</option>
           <option value="30">Dernier mois</option>
+          <option value="90">Dernier 3 mois</option>
+          <option value="365">Dernière années</option>
         </select>
       </div>
 <div className="title">{title} </div>

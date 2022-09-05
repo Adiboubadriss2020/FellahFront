@@ -17,7 +17,6 @@ import HealingIcon from '@mui/icons-material/Healing';
 import { UserContext } from '../../Usercontext';
 export const Sidebar = () => {
     const { dispatch } = useContext(DarkModeContext);
-    const navigate = useNavigate();
   return (
     <div className='sidebar'>
         <div className='top'>

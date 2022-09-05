@@ -14,13 +14,15 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import CustomizedDialogs from '../chart/dialog';
+import NewAnimalAlimentation from '../../pages/new/NewAnimalAlimentation/NewAnimalAlimentation';
 const Featured = () => {
 
   var filter = 0
   const [data, setData] = useState([
     {
-      Le: "2022-05-05",
-      Quantité : 540,
+      Le: "",
+      Quantité : 0,
     }
   ])
   const clearInput = () => {
@@ -77,7 +79,9 @@ const Featured = () => {
           <option value="30">Dernier mois</option>
         </select>
         <div className="title">Alimentation</div>
-        
+        <CustomizedDialogs>
+          <NewAnimalAlimentation />
+        </CustomizedDialogs>
       </div>
       <div className="bottom">
         <ComposedChart width={630} height={290} data={data} className='chart'>
@@ -86,7 +90,7 @@ const Featured = () => {
           <Tooltip />
           <Legend />
           <CartesianGrid stroke="#f5f5f5" />
-          <Bar dataKey="Quantité" barSize={20} units fill="green" />
+          <Bar dataKey="Quantité" barSize={20} units fill="#C98474" />
           
         </ComposedChart>
       </div>

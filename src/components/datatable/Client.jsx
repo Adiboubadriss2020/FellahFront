@@ -34,7 +34,7 @@ const Datatable = () => {
   const handleDelete = (id) => {
 
     console.log('Printing id', id);
-    if (window.confirm('Êtes-vous sûr de vouloir enregistrer cet élément dans la base de données ?')) {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
       axios.delete(deleteclt + `${id}`).catch(error => {
         setSnackbar({ children: error.message, severity: 'error' });
       })
@@ -68,7 +68,8 @@ const Datatable = () => {
         <div className="cellAction">
           <Link to="/fournisseurs/test" style={{ textDecoration: "none" }}>
           </Link>
-          <div className="deleteButton" >Supprimer</div>
+          <div className="deleteButton" >Supprimer
+          </div>
 
         </div>
 
@@ -81,7 +82,7 @@ const Datatable = () => {
 
     <div className="datatable">
       <div className="datatabletitle">Client
-        <CustomizedDialogs title="Ajouter un client" button="Nouveau client">
+        <CustomizedDialogs title="Ajouter un client" button="Ajouter">
           <NewClient />
         </CustomizedDialogs>
 

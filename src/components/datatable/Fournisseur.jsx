@@ -53,7 +53,7 @@ const handleUpdate = React.useCallback(async(data) =>
   const handleDelete = (id) => {
 
    console.log('Printing id', id);
-    if (window.confirm('Êtes-vous sûr de vouloir enregistrer cet élément dans la base de données ?')) {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
       axios.delete(deletefournisseur + `${id}`).catch(error => {
         setSnackbar({ children: "Fournisseur active!", severity: 'error' });
       })
@@ -96,7 +96,7 @@ return(
 
          <div className="datatable">
            <div className="datatabletitle">Fournisseurs
-        <CustomizedDialogs title="Ajouter un fournisseur" button="Nouveau fournisseur">
+        <CustomizedDialogs title="Ajouter un fournisseur" button="Ajouter">
           <NewFournisseur />
         </CustomizedDialogs>
 

@@ -55,6 +55,16 @@ const inputs = [
   },
   {
     id: 4,
+    name: "prix_vente",
+    type: "text",
+    placeholder: "Prix de vente",
+    errorMessage:
+      "Respecter le prix de vente!",
+    pattern: "^([0-9'\.]{2,10})$",
+    label: "Prix de vente (Optionnel)"
+  },
+  {
+    id: 5,
     name: "origine",
     type: "text",
     placeholder: "Race",
@@ -65,7 +75,7 @@ const inputs = [
     required: true,
   },
   {
-    id: 5,
+    id: 6,
     name: "poid_achat",
     type: "text",
     placeholder: "Poid d'achat ",
@@ -76,27 +86,17 @@ const inputs = [
     required: true,
   },
   {
-    id: 6,
+    id: 7,
     name: "poid_vente",
     type: "text",
     placeholder: "Poid de vente ",
     errorMessage:
       "Poid supérieur à 100!",
-    label: "Poid de vente (kg)",
+    label: "Poid de vente  (Optionnel)",
     pattern: "^([0-9'\.]{2,4})$",
-    required: true,
+    
   },
-  {
-    id: 7,
-    name: "infos",
-    type: "text",
-    placeholder: "Infos sur la maladie du bovin...",
-    errorMessage:
-      "Infos insuffisant! au moins 4 caractères",
-    label: "Infos (optionnel)",
-    pattern: "^[A-Za-z]{4,16}$",
-    required: false,
-  },
+
 ];
 
 const handleSubmit = (e) => {

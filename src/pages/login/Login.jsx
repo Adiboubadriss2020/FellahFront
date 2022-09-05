@@ -7,6 +7,7 @@ import Snackbar from '@mui/material/Snackbar';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
  import Sidebar from '../../components/sidebar/Sidebar';
+import { api } from '../../var';
 export const Login = (va) => {
   localStorage.clear()
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ export const Login = (va) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post(`http://localhost:8080/account/login`,registeru).then(val => {
+    axios.post(api+`/account/login`,registeru).then(val => {
     va = val.data
     /*  dispatch(loginSuccess(users))
       localStorage.setItem('jwt', users.auth_token)

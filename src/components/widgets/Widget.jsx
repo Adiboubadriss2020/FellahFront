@@ -13,9 +13,9 @@ import { api } from '../../var';
 const Widget = ({type}) => {
 
     const URL1 = api+`/fournisseur/allF`;
-    const URL2 = api + `http://localhost:8080/animal/allAn`;
-    const URL3 = api + `http://localhost:8080/employee/allEmp`;
-    const URL4 = api + `http://localhost:8080/client/allClt`;
+    const URL2 = api + `/animal/allAn`;
+    const URL3 = api + `/employee/allEmp`;
+    const URL4 = api + `/client/allClt`;
 
     const [animal, setAnimal] = useState([]);
     const [fournisseur, setFournisseur] = useState([]);

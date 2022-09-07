@@ -1,0 +1,8 @@
+#configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://us-cdbr-east-06.cleardb.net:3306/heroku_4b9dd8b633df98b
+spring.datasource.username=b5f6377b63ed99
+spring.datasource.password=ed1de4e823eb99c
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+

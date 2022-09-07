@@ -11,6 +11,7 @@ import NewClient from '../../pages/new/NewClient/NewClient';
 import { allclt, deleteclt, updateclt, value } from '../../var';
 
 const Datatable = () => {
+  let value = 0
 
   const [Client, setClient] = useState([]);
   const [snackbar, setSnackbar] = React.useState(null);
@@ -33,11 +34,17 @@ const Datatable = () => {
   const handleDelete = (id) => {
 
     console.log('Printing id', id);
-    axios.delete(deleteclt+`${id}`).catch(error => {
-      setSnackbar({ children: error.message, severity: 'error' });
-    })
-    setSnackbar({ children: 'Bien supprimer', severity: 'success' });
-    window.location.reload(false);
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
+      axios.delete(deleteclt + `${id}`).catch(error => {
+        setSnackbar({ children: error.message, severity: 'error' });
+      })
+      setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+      window.location.reload(false);
+
+    } else {
+      console.log('Thing was not saved to the database.');
+    }
+   
 
   }
 
@@ -61,7 +68,8 @@ const Datatable = () => {
         <div className="cellAction">
           <Link to="/fournisseurs/test" style={{ textDecoration: "none" }}>
           </Link>
-          <div className="deleteButton" >Delete</div>
+          <div className="deleteButton" >Supprimer
+          </div>
 
         </div>
 
@@ -74,7 +82,7 @@ const Datatable = () => {
 
     <div className="datatable">
       <div className="datatabletitle">Client
-        <CustomizedDialogs title="Ajouter un client" button="Nouveau client">
+        <CustomizedDialogs title="Ajouter un client" button="Ajouter">
           <NewClient />
         </CustomizedDialogs>
 

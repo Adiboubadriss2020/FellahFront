@@ -9,55 +9,66 @@ import Alert from '@mui/material/Alert';
 import CustomizedDialogs from '../../pages/new/Inputpopup/dialog'
 import NewAnimalAlimentation from '../../pages/new/NewAnimalAlimentation/NewAnimalAlimentation';
 import NewAlimentation from '../../pages/new/NewAlimentation/NewAlimentation';
-import { allalimentation, allalimentationanimal, deletealimentation, deletealimentationanimal, updatealiemntation,value } from '../../var';
+import { allalimentation, allalimentationanimal, deletealimentation, deletealimentationanimal, updatealiemntation } from '../../var';
 
 
 const Datatable = () => {
+    let value=0
      const [snackbar, setSnackbar] = React.useState(null);
      const handleCloseSnackbar = () => setSnackbar(null);
      const [Alimentation, setAlimentation] = useState([]);
      const [Alimentationanimal, setAlimentationanimal] = useState([]);
+     
     const handleUpdate = React.useCallback(async (data) => {
+        console.log(data)
         axios.put(updatealiemntation+`${data.id}`, data);
         setSnackbar({ children: 'Alimentation bien enregister', severity: 'success' });
+        window.location.reload(false);
     }, );
 
 
     const handleProcessRowUpdateError = React.useCallback((error) => {
-        setSnackbar({ children: error.message, severity: 'error' });
+       // setSnackbar({ children: error.message, severity: 'error' });
     }, []);
 
 
     const handleDeletealimentationanimal = (id) => {
 
         console.log('Printing id', id);
-        axios.delete(deletealimentationanimal+`${id}`).catch(error => {
-            setSnackbar({ children: error.message, severity: 'error' });
-        })
-        setSnackbar({ children: 'Bien supprimer', severity: 'success' });
-        window.location.reload(false);
+        if (window.confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
+            axios.delete(deletealimentationanimal + `${id}`).catch(error => {
+                setSnackbar({ children: error.message, severity: 'error' });
+            })
+            setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+            window.location.reload(false);
+        } else {
+            console.log('Thing was not saved to the database.');
+        }
+
+       
 
     } 
     const handleDeletealimentation = (id) => {
 
         console.log('Printing id', id);
-        axios.delete(deletealimentation+`${id}`).catch(error => {
-            if (error) {
-                const timer = setTimeout(() => {
-                    setSnackbar({ children: " Ce type d'alimentation est utilisé dans l'alimentation animal", severity: 'error' });
-                }, 500);
-                
-                return () => clearTimeout(timer);       
-            }
-               
-                    setSnackbar({ children: 'Bien supprimer', severity: 'success' });
-          
-                window.location.reload(false);
-                
-             
+        if (window.confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
+            axios.delete(deletealimentation + `${id}`).catch(error => {
+                if (error) {
+                    const timer = setTimeout(() => {
+                        setSnackbar({ children: " Ce type d'alimentation est utilisé dans l'alimentation animal", severity: 'error' });
+                    }, 500);
 
-        })
-        
+                    return () => clearTimeout(timer);
+                }
+                setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+                window.location.reload(false);
+            })
+
+            setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+        } else {
+            console.log('Thing was not saved to the database.');
+        }
+       
        
 
     }
@@ -107,7 +118,7 @@ const Datatable = () => {
 
         <div className="datatable">
             <div className="datatabletitle">Alimentation
-                <CustomizedDialogs title="Ajouter une alimentation" button="Nouvelle alimentation">
+                <CustomizedDialogs title="Ajouter une alimentation" button="Ajouter">
                     <NewAlimentation />
                 </CustomizedDialogs>
 
@@ -152,7 +163,7 @@ const Datatable = () => {
             )}
             <div className="datatable">
             <div className="datatabletitle">Alimentation Animal
-                    <CustomizedDialogs title="Ajouter une alimentation" button="Nouvelle alimentation">
+                    <CustomizedDialogs title="Ajouter une alimentation" button="Ajouter">
                         <NewAnimalAlimentation />
                     </CustomizedDialogs>
 

@@ -11,6 +11,7 @@ import NewVeterinaireVisite from '../../pages/new/NewVeterinaireVisite/NewVeteri
 import { allveterinaire, allvisite, deleteveterinaire, deletevisite, updateveterinaire, updatevisite, value } from '../../var';
 
 const Datatable = () => {
+    let value = 0
 
     const [visite, setVisite] = useState([]);
     const [veterinaire, setVeterinaire] = useState([]);
@@ -30,40 +31,52 @@ const Datatable = () => {
 
         axios.put(updatevisite+`${data.id}`, data);
         setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
+      //  window.location.reload(false);
     },
     );
 
     const handleProcessRowUpdateError = React.useCallback((error) => {
-        setSnackbar({ children: error.message, severity: 'error' });
+     //   setSnackbar({ children: error.message, severity: 'error' });
     }, []);
 
 
     const handleDeletevisite = (id) => {
 
         console.log('Printing id', id);
-        axios.delete(deletevisite+`${id}`).catch(error => {
-            setSnackbar({ children: error.message, severity: 'error' });
-        })
-        setSnackbar({ children: 'Bien supprimer', severity: 'success' });
-        window.location.reload(false);
+        if (window.confirm('Êtes-vous sûr de vouloir enregistrer cet élément dans la base de données ?')) {
+            axios.delete(deletevisite + `${id}`).catch(error => {
+                setSnackbar({ children: error.message, severity: 'error' });
+            })
+            setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+            window.location.reload(false);
+        } else {
+            console.log('Thing was not saved to the database.');
+        }
+       
 
     }
     const handleDeleteveterinaire = (id) => {
 
         console.log('Printing id', id);
-        axios.delete(deleteveterinaire+`${id}`).catch(error => {
-            if (error) {
-                const timer = setTimeout(() => {
-                    setSnackbar({ children: " Cet veterinaire a déja effectué une viste!", severity: 'error' });
-                }, 500);
+        if (window.confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
+            axios.delete(deleteveterinaire + `${id}`).catch(error => {
+                if (error) {
+                    const timer = setTimeout(() => {
+                        setSnackbar({ children: " Cet veterinaire a déja effectué une viste!", severity: 'error' });
+                    }, 500);
 
-                return () => clearTimeout(timer);
-            }
+                    return () => clearTimeout(timer);
+                }
 
-            setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+                setSnackbar({ children: 'Bien supprimer', severity: 'success' });
 
-            window.location.reload(false);
-        })
+                window.location.reload(false);
+            })
+        } else {
+            console.log('Thing was not saved to the database.');
+        }
+
+        
 
     }
     useEffect(() => {
@@ -87,7 +100,7 @@ const Datatable = () => {
 
             return (
                 <div className="cellAction">
-                    <div className="deleteButton" >Delete</div>
+                    <div className="deleteButton" >Supprimer</div>
                 </div>
             )
         }
@@ -120,7 +133,7 @@ const Datatable = () => {
 
         <div className="datatable">
             <div className="datatabletitle">Veteriniare
-                <CustomizedDialogs title="Ajouter un veterianire" button="Nouveau veterinaire">
+                <CustomizedDialogs title="Ajouter un veterianire" button="Ajouter">
                     <NewVeterinaire />
                 </CustomizedDialogs>
 
@@ -167,7 +180,7 @@ const Datatable = () => {
 
            
                 <div className="datatabletitle">Visite
-                <CustomizedDialogs title="Ajouter une visite" button="Nouvelle visite">
+                <CustomizedDialogs title="Ajouter une visite" button="Ajouter">
                     <NewVeterinaireVisite />
                 </CustomizedDialogs>
                 

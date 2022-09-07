@@ -1,15 +1,15 @@
 import React, { useState,useEffect } from 'react';
-import axios from 'axios';
+
 import './chart.scss'
 import { AreaChart,Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import CustomizedDialogs from './dialog';
+import Addcharge from '../charge_form/addcharge';
+import Sum from './Summ';
+import Summ from './Summ';
+import { charges } from '../../var';
 
 const Chart = ({aspect, title}) => {
   var filter=0
-  var filter2= 0
-  const URL1 = `http://localhost:8080/charge/threedays`;
-  const URL2 = `http://localhost:8080/fournisseur/sevendays`;
-  const URL3 = `http://localhost:8080/charge/month`;
-
   const [data, setData] = useState([
     { 
       date: "1",
@@ -22,11 +22,8 @@ const Chart = ({aspect, title}) => {
 
   };
 
-  const getseven = (id1,id2) => {
-
-console.log(id1,id2)
-
-    fetch(`http://localhost:8080/fournisseurs/days/${id2}/`
+  const getseven = (id1) => {
+    fetch(charges+`${id1}`
       , {
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +37,6 @@ console.log(id1,id2)
       })
       .then(function (myJson) {
         let v = myJson
-        console.log(v)
         clearInput()
         for (let index = 0; index < v.length; index++) {
           const element = v[index];
@@ -59,13 +55,27 @@ console.log(id1,id2)
 
   useEffect(() => {
     filter = document.getElementById('filter')
-    if (filter && filter2)
+    if (filter)
       filter.addEventListener('change', changer)
   }, []) 
   return (
     
     <div className='chart'>
-<div className="title">{title}</div>
+ 
+      <div className="selecbox">
+        <select id="filter">
+          <option value="⬇️ Select ⬇️"> -- Choix -- </option>
+          <option value="30">Dernier mois</option>
+          <option value="90">Dernier 3 mois</option>
+          <option value="365">Dernière années</option>
+        </select>
+      </div>
+<div className="title">{title} </div>
+
+      <CustomizedDialogs>
+        <Addcharge/>
+      </CustomizedDialogs>
+     
 <ResponsiveContainer width="100%" aspect={aspect}>
 <AreaChart width={730} height={250} data={data}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
@@ -88,13 +98,7 @@ console.log(id1,id2)
 </AreaChart>
       </ResponsiveContainer>  
      
-      <div className="selecbox">
-        <select id="filter">
-          <option value="3">Dernier 3 jours</option>
-          <option value="7">Dernier semaine</option>
-          <option value="30">Dernier mois</option>
-        </select>
-      </div>
+      
     </div>
     
   )

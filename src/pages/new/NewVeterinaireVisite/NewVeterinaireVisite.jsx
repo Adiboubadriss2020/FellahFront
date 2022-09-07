@@ -8,15 +8,17 @@ import { addvisite, checkanimal, checkveterinaire } from '../../../var';
 export const NewVeterinaireVisite = () => {
     var [veterinaire, setVeterinare] = useState()
     var [animal, setAnimal] = useState() 
-    const [prix_visite, setPrix_visite] = useState('')
     const [date_visite, setDate_visite] = useState('')
+    const [prix_medicament, setPrix] = useState('')
+    const [medicament, setMedicament] = useState('')
     const [snackbar, setSnackbar] = React.useState(null);
     const handleCloseSnackbar = () => setSnackbar(null);
     const visite = {
         date_visite,
-        prix_visite,
         animal,
-        veterinaire
+        veterinaire,
+        prix_medicament,
+        medicament
     }
     const inputs = [
         {
@@ -30,20 +32,9 @@ export const NewVeterinaireVisite = () => {
             onChange: (e) => setDate_visite(e.target.value),
             required: true,
         },
+    
         {
             id: 2,
-            name: "prix_visite",
-            type: "text",
-            placeholder: "Prix de la visite",
-            errorMessage:
-                "Enter un prix valide!",
-            label: "Prix de la visite",
-            pattern: "^([0-9]{2,10})$",
-            onChange: (e) => setPrix_visite(e.target.value),
-            required: true,
-        },
-        {
-            id: 3,
             name: "animal",
             type: "text",
             placeholder: "Enter le Ref du bovin!",
@@ -52,7 +43,7 @@ export const NewVeterinaireVisite = () => {
             required: true,
         },
         {
-            id: 4,
+            id: 3,
             name: "veterinaire",
             type: "text",
             placeholder: "Enter le nom du veterinaire!",
@@ -61,8 +52,27 @@ export const NewVeterinaireVisite = () => {
             required: true,
             
         },
-    ];
+        {
+            id: 4,
+            name: "medicament",
+            type: "text",
+            placeholder: "Enter le nom du médicament!",
+            label: "Médicament",
+            onChange: (e) => setMedicament(e.target.value),
+            required: true,
 
+        },
+        {
+            id: 5,
+            name: "prix_medicament",
+            type: "number",
+            placeholder: "Enter le prix du médicament!",
+            label: "Prix",
+            onChange: (e) => setPrix(e.target.value),
+            required: true,
+
+        },
+    ];
 
 
     const handleSubmit = (e) => {

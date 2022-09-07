@@ -11,9 +11,8 @@ export const NewFournisseur = () => {
   const [values, setValues] = useState({
     adresse: "",
     email: "",
-    date: "",
     nom: "",
-    transaction: "",
+    commercial:""
   });
 
   const inputs = [
@@ -51,25 +50,16 @@ export const NewFournisseur = () => {
     },
     {
       id: 4,
-      name: "transaction",
+      name: "commercial",
       type: "text",
-      placeholder: "Transaction",
+      placeholder: "Commercial",
       errorMessage:
-        "Transaction invalide",
-      label: "Transaction",
-      pattern: "^([0-9]{3,10})$",
+        "Le commercial doit comporter de 3 à 16 caractères et ne doit pas inclure de caractère spécial !",
+      label: "Commercial",
+      pattern: "^[A-Za-z]{3,16}$",
       required: true,
     },
-    {
-      id: 5,
-      name: "date",
-      type: "date",
-      placeholder: "Date",
-      errorMessage:
-        "Respecter la date",
-      label: "Date",
-      required: true,
-    },
+   
   ];
 
 

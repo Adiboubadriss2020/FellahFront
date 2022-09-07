@@ -11,6 +11,7 @@ import 'reactjs-popup/dist/index.css';
 import { allanimal, deleteanimal, updateanimal, value } from '../../var';
 
 const Datatable = () => {
+  let value = 0
 
   const [Animal, setAnimal] = useState([]);
   const [snackbar, setSnackbar] = React.useState(null);
@@ -26,18 +27,24 @@ const Datatable = () => {
 
 
   const handleProcessRowUpdateError = React.useCallback((error) => {
-    setSnackbar({ children: error.message, severity: 'error' });
+   // setSnackbar({ children: "Erreur!", severity: 'error' });
   }, []);
 
 
   const handleDelete = (id) => {
 
     console.log('Printing id', id);
-    axios.delete(deleteanimal+`${id}`).catch(error => {
-      setSnackbar({ children: error.message, severity: 'error' });
-    })
-    setSnackbar({ children: 'Deleted successfully', severity: 'success' });
-    window.location.reload(false);
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
+      axios.delete(deleteanimal + `${id}`).catch(error => {
+        setSnackbar({ children: error.message, severity: 'error' });
+      })
+      setSnackbar({ children: 'Deleted successfully', severity: 'success' });
+      window.location.reload(false);
+    
+  } else {
+    console.log('Thing was not saved to the database.');
+}
+
 
   }
 
@@ -57,7 +64,7 @@ const Datatable = () => {
         <div className="cellAction">
           
           
-          <div className="deleteButton" >Delete</div>
+          <div className="deleteButton" >Supprimer</div>
          
         </div>
       )
@@ -67,7 +74,7 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatabletitle">Bovin
-        <CustomizedDialogs title="Ajouter un bovin" button="Nouveau bovin">
+        <CustomizedDialogs title="Ajouter un bovin" button="Ajouter">
           <NewAnimal />
         </CustomizedDialogs>
         

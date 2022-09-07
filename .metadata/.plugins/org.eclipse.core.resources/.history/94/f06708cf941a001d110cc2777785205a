@@ -1,5 +1,0 @@
-package com.fellah.api.service;
-
-public class ChargeImpService implements ChargeService {
-
-}

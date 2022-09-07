@@ -1,4 +1,3 @@
-// Alimentation
 export let value = 0
 export const addalimentation = `http://localhost:8080/alimentation/add/`;
 export const updatealiemntation = `http://localhost:8080/alimentation/update/`;
@@ -14,6 +13,13 @@ export const deletealimentationanimal = `http://localhost:8080/alimentationanima
 export const updateanimal = `http://localhost:8080/animal/update/`;
 export const allanimal = `http://localhost:8080/animal/getAll/`;
 export const addanimal = `http://localhost:8080/animal/add/`;
+export const sumanimal = `http://localhost:8080/animal/sum/`;
+export const ventedate = `http://localhost:8080/animal/sum/`;
+export const sumcharge = `http://localhost:8080/charge/sum/`;
+export const charges = `http://localhost:8080/charge/days/`;
+export const animals = `http://localhost:8080/animal/days/`;
+export const sumgaincharge = `http://localhost:8080/charge/sum/days/`;
+export const sumgainanimal = `http://localhost:8080/animal/sum/days/`;
 export const deleteanimal = `http://localhost:8080/animal/delete/`;
 // Fournisseur
 export const updatefournisseur = `http://localhost:8080/fournisseur/update/`;
@@ -35,6 +41,8 @@ export const updateveterinaire = `http://localhost:8080/veterinaire/update/`;
 export const allveterinaire = `http://localhost:8080/veterinaire/getAll/`;
 export const addveterinaire = `http://localhost:8080/veterinaire/add/`;
 export const deleteveterinaire = `http://localhost:8080/veterinaire/delete/`;
+export const visitemedicale = `http://localhost:8080/visite/delete/`;
+
 // Visite
 export const updatevisite = `http://localhost:8080/visite/update/`;
 export const allvisite = `http://localhost:8080/visite/getAll/`;

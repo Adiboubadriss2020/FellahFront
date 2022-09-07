@@ -16,7 +16,6 @@ import {
 } from 'recharts';
 import CustomizedDialogs from '../chart/dialog';
 import NewAnimalAlimentation from '../../pages/new/NewAnimalAlimentation/NewAnimalAlimentation';
-import { api } from '../../var';
 const Featured = () => {
 
   var filter = 0
@@ -34,7 +33,7 @@ const Featured = () => {
 
     console.log(id2)
 
-    fetch(api+`/alimentations/days/${id2}/`
+    fetch(`http://localhost:8080/alimentationanimal/alimentations/days/${id2}/`
       , {
         headers: {
           'Content-Type': 'application/json',
@@ -75,6 +74,7 @@ const Featured = () => {
     <div className='chart'>
       <div className="top">
         <select id="filter1">
+          <option value="⬇️ Select ⬇️"> --Choix -- </option>
           <option value="3">Dernier 3 jours</option>
           <option value="7">Dernier semaine</option>
           <option value="30">Dernier mois</option>
@@ -85,7 +85,7 @@ const Featured = () => {
         </CustomizedDialogs>
       </div>
       <div className="bottom">
-        <ComposedChart width={450} height={250} data={data} className='chart'>
+        <ComposedChart width={630} height={280} data={data} >
           <XAxis dataKey="Le"  />
           <YAxis unit="kg" />
           <Tooltip />

@@ -31,7 +31,7 @@ const Datatable = () => {
 
         axios.put(updatevisite+`${data.id}`, data);
         setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
-        window.location.reload(false);
+      //  window.location.reload(false);
     },
     );
 

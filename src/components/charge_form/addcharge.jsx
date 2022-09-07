@@ -34,7 +34,7 @@ const Addcharge= () =>{
         clearInput()
         setFruit(e.target.value)
         const a = e.target.value.split(" ").pop()
-                axios.get(api+`/${a}/getAll`)
+        axios.get(`http://localhost:8080/${a}/getAll`)
             .then(res => {
                 const persons = res.data;
                 console.log(persons)
@@ -88,11 +88,11 @@ const Addcharge= () =>{
         const a = fruit.split(" ").pop()
 
         if (a === "fournisseur") { 
-            axios.get(api+`/${a}/find/${i}`)
+            axios.get(`http://localhost:8080/${a}/find/${i}`)
                 .then(res => {
                     const persons = res.data;
                     charge.fournisseur = persons
-                    axios.post(api+`/charge/add`, charge).catch(error => {
+                    axios.post(`http://localhost:8080/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 
@@ -101,11 +101,11 @@ const Addcharge= () =>{
         }
         else if (a === "employee") { 
                 console.log(a)
-            axios.get(api +`/${a}/find/${i}`)
+            axios.get(`http://localhost:8080/${a}/find/${i}`)
                 .then(res => {
                     const persons = res.data;
                     charge.employee = persons
-                    axios.post(api+`/charge/add`, charge).catch(error => {
+                    axios.post(`http://localhost:8080/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 
@@ -113,11 +113,11 @@ const Addcharge= () =>{
                 })
         }
         else if (a === "client") {
-            axios.get(api+`/${a}/find/${i}`)
+            axios.get(`http://localhost:8080/${a}/find/${i}`)
                 .then(res => {
                     const persons = res.data;
                     charge.client = persons
-                    axios.post(api+`/charge/add`, charge).catch(error => {
+                    axios.post(`http://localhost:8080/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 
@@ -125,11 +125,11 @@ const Addcharge= () =>{
                 })
          }
         else if (a === "veterinaire") { 
-            axios.get(api+`/${a}/find/${i}`)
+            axios.get(`http://localhost:8080/${a}/find/${i}`)
                 .then(res => {
                     const persons = res.data;
                     charge.veterianire = persons
-                    axios.post(api +`/charge/add`, charge).catch(error => {
+                    axios.post(`http://localhost:8080/charge/add`, charge).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
 
@@ -137,11 +137,11 @@ const Addcharge= () =>{
                 })
          }
         else if (a === "alimentation") {
-            axios.get(api+`/${a}/find/${i}`)
+            axios.get(+`http://localhost:8080/${a}/find/${i}`)
             .then(res => {
                 const persons = res.data;
                 charge.alimentation = persons
-                axios.post(api+`/charge/add`, charge).catch(error => {
+                axios.post(`http://localhost:8080/charge/add`, charge).catch(error => {
                     setSnackbar({ children: error.message, severity: 'error' });
                 });
 

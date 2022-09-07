@@ -6,7 +6,6 @@ import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { api } from '../../var';
 
 export const Register = () => {
     var va=""
@@ -69,7 +68,7 @@ export const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(registeru)
-        axios.post(api+`/account/register`, registeru).then(val => {
+        axios.post(`http://localhost:8080/account/register`, registeru).then(val => {
             va =val.data
             setSnackbar({ children: va, severity: 'success' });
             navigate("/Login");

@@ -55,8 +55,11 @@ export const alimentationanimal = [
 ];
 
 export const visitecol = [
-  { field: "id", headerName: "Numéro", type: "text", width: 300 },
-  { field: "date_visite", headerName: "Date de visite", type: "date", editable: true, width: 300 },
+  { field: "id", headerName: "Numéro", type: "text", width: 150 },
+  { field: "date_visite", headerName: "Date de visite", type: "date", editable: true, width: 150 },
+  { field: "medicament", headerName: "Médicament", type: "text", editable: true, width: 150 },
+  { field: "prix_medicament", headerName: "Prix (Dh)", type: "number", editable: true, width: 150 },
+
 ];
 export const veterinairecol = [
   { field: "nom", headerName: "Nom", type: "text", editable: true, width: 400 },

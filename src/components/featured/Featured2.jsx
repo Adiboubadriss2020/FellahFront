@@ -61,6 +61,7 @@ const Featured2 = () => {
       <div className="top">
 
         <select id="fil">
+          <option value="Select">-- Choix --</option>
           <option value="30">Dernier mois</option>
           <option value="90">Dernier 3 mois</option>
           <option value="365">Dernière années</option>
@@ -71,7 +72,7 @@ const Featured2 = () => {
       <div className="bottom">
         <ComposedChart width={1000} height={400} data={data2} className='chart' >
           <XAxis  dataKey="Le"  />
-          <YAxis unit="Dh" />
+          <YAxis unit="Dh" width={200} />
           <Tooltip />
           <Legend />
           <CartesianGrid stroke="#f5f5f5" />

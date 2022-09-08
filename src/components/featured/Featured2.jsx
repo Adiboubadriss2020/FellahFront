@@ -57,7 +57,7 @@ const Featured2 = () => {
   }, []) 
 
   return (
-    <div className='chart' style={{ marginLeft: "20px" }}>
+    <div className='chart' style={{ marginLeft: "50px" }}>
       <div className="top">
 
         <select id="fil">
@@ -72,7 +72,7 @@ const Featured2 = () => {
       <div className="bottom">
         <ComposedChart width={1000} height={400} data={data2} className='chart' >
           <XAxis  dataKey="Le"  />
-          <YAxis unit="Dh" width={200} />
+          <YAxis unit="Dh" width={100} />
           <Tooltip />
           <Legend />
           <CartesianGrid stroke="#f5f5f5" />

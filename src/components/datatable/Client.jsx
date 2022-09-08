@@ -9,22 +9,44 @@ import Alert from '@mui/material/Alert';
 import CustomizedDialogs from '../../pages/new/Inputpopup/dialog'
 import NewClient from '../../pages/new/NewClient/NewClient';
 import { allclt, deleteclt, updateclt, value } from '../../var';
-
+const useFakeMutation = () => {
+  return React.useCallback(
+    (user) =>
+      new Promise((resolve, reject) =>
+        setTimeout(() => {
+          if (user.prenom === '' || user.nom === '' || user.tel === '' || user.adresse === '') {
+            reject(new Error("Erreur: Champ est vide!"));
+          }
+          else {
+            resolve({ ...user, prenom: user.prenom });
+            resolve({ ...user, nom: user.nom });
+            resolve({ ...user, adresse: user.adresse });
+            resolve({ ...user, tel: user.tel });
+           
+          }
+        }, 200),
+      ),
+    [],
+  );
+};
 const Datatable = () => {
   let value = 0
 
   const [Client, setClient] = useState([]);
   const [snackbar, setSnackbar] = React.useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
+  const mutateRow = useFakeMutation();
 
 
   const handleUpdate = React.useCallback(async (data) => {
 
-    axios.put(updateclt+`${data.id}`, data);
-    setSnackbar({ children: 'Client est bien enregistrer', severity: 'success' });
+    axios.put(updateclt + `${data.id}`, data)
+    const response = await mutateRow(data);
+    setSnackbar({ children: 'Employé bien enregistrer', severity: 'success' });
+    return response;
   },
+    [mutateRow],
   );
-
 
   const handleProcessRowUpdateError = React.useCallback((error) => {
     setSnackbar({ children: error.message, severity: 'error' });

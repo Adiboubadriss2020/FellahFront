@@ -14,11 +14,13 @@ const useFakeMutation = () => {
     (user) =>
       new Promise((resolve, reject) =>
         setTimeout(() => {
-          console.log(user)
-          if (user.email === '') {
-            reject(new Error("Erreur: Email est obligatoire!"));
-          } else {
+          if (user.email === '' || user.nom === '' || user.adresse === ''  ) {
+            reject(new Error("Erreur: Champ est vide!"));
+          }
+          else {
             resolve({ ...user, email: user.email });
+            resolve({ ...user, nom: user.nom });
+            resolve({ ...user, adresse: user.adresse });
           }
         }, 200),
       ),

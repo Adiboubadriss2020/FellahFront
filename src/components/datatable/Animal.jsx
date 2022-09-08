@@ -9,25 +9,47 @@ import NewAnimal from '../../pages/new/NewAnimal/NewAnimal'
 import CustomizedDialogs from '../../pages/new/Inputpopup/dialog'
 import 'reactjs-popup/dist/index.css';
 import { allanimal, deleteanimal, updateanimal, value } from '../../var';
-
+const useFakeMutation = () => {
+  return React.useCallback(
+    (user) =>
+      new Promise((resolve, reject) =>
+        setTimeout(() => {
+          if (user.ref === '' || user.date_achat === '' || user.date_vente === '' || user.origine === '' || user.poid_achat === ''
+            ||  user.prix_achat === '') {
+            reject(new Error("Erreur: Champ est vide!"));
+          }
+          else {
+            resolve({ ...user, ref: user.ref });
+            resolve({ ...user, date_achat: user.date_achat });
+            resolve({ ...user, date_vente: user.date_vente });
+            resolve({ ...user, origine: user.origine });
+            resolve({ ...user, poid_achat: user.poid_achat });
+            resolve({ ...user, prix_achat: user.prix_achat });
+          }
+        }, 200),
+      ),
+    [],
+  );
+};
 const Datatable = () => {
   let value = 0
 
   const [Animal, setAnimal] = useState([]);
   const [snackbar, setSnackbar] = React.useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
-
-
+  const mutateRow = useFakeMutation();
 
   const handleUpdate = React.useCallback(async (data) => {
-    axios.put(updateanimal+`${data.id}`, data);
-    setSnackbar({ children: 'Animal bien enregistrer', severity: 'success' }); 
+    axios.put(updateanimal + `${data.id}`, data)
+    const response = await mutateRow(data);
+    setSnackbar({ children: 'Bovin bien enregistrer', severity: 'success' });
+    return response;
   },
+    [mutateRow],
   );
 
-
   const handleProcessRowUpdateError = React.useCallback((error) => {
-   // setSnackbar({ children: "Erreur!", severity: 'error' });
+    setSnackbar({ children: error.message, severity: 'error' });
   }, []);
 
 

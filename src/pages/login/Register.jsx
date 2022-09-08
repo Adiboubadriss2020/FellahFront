@@ -70,8 +70,17 @@ export const Register = () => {
         console.log(registeru)
         axios.post(`http://localhost:8080/account/register`, registeru).then(val => {
             va =val.data
-            setSnackbar({ children: va, severity: 'success' });
-            navigate("/Login");
+            if(va.includes('Emai'))
+            {
+                setSnackbar({ children: va, severity: 'error' });
+
+            }
+            else{
+                setSnackbar({ children: va, severity: 'success' });
+                navigate("/Login");
+
+            }
+
 
         })
         

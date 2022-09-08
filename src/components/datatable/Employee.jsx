@@ -9,21 +9,42 @@ import Alert from '@mui/material/Alert';
 import NewEmployee from '../../pages/new/NewEmployee/NewEmployee';
 import CustomizedDialogs from '../../pages/new/Inputpopup/dialog'
 import { allemloyee, deleteemployee, updateemployee, value } from '../../var';
-
+const useFakeMutation = () => {
+  return React.useCallback(
+    (user) =>
+      new Promise((resolve, reject) =>
+        setTimeout(() => {
+          if (user.prenom === '' || user.nom === '' || user.age === '' || user.adresse === '' || user.salaire === '') {
+            reject(new Error("Erreur: Champ est vide!"));
+          }
+          else {
+            resolve({ ...user, prenom: user.prenom });
+            resolve({ ...user, nom: user.nom });
+            resolve({ ...user, adresse: user.adresse });
+            resolve({ ...user, age: user.age });
+            resolve({ ...user, salaire: user.salaire });
+          }
+        }, 200),
+      ),
+    [],
+  );
+};
 const Datatable = () => {
   let value = 0
 
   const [Employee, setEmployee] = useState([]);
   const [snackbar, setSnackbar] = React.useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
+  const mutateRow = useFakeMutation();
 
 
   const handleUpdate = React.useCallback(async (data) => {
-    axios.put(updateemployee + `${data.id}`, data).catch(error => {
-      setSnackbar({ children: error.message, severity: 'error' });
-    })
-    setSnackbar({ children: 'Employee bien enregistrer', severity: 'success' });
-  }
+    axios.put(updateemployee + `${data.id}`, data)
+    const response = await mutateRow(data);
+    setSnackbar({ children: 'Employé bien enregistrer', severity: 'success' });
+    return response;
+  },
+    [mutateRow],
   );
 
 

@@ -3,20 +3,12 @@ import './sidebar.scss'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import PetsIcon from '@mui/icons-material/Pets';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import EmojiNatureIcon from '@mui/icons-material/EmojiNature';
-import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
-import {Link, useNavigate} from 'react-router-dom';
-import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
+import {Link} from 'react-router-dom';
 import HealingIcon from '@mui/icons-material/Healing';
-import { UserContext } from '../../Usercontext';
+
 export const Sidebar = () => {
-    const { dispatch } = useContext(DarkModeContext);
   return (
     <div className='sidebar'>
         <div className='top'>

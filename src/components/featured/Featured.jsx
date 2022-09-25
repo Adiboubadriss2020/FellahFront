@@ -85,7 +85,7 @@ const Featured = () => {
         </CustomizedDialogs>
       </div>
       <div className="bottom">
-        <ComposedChart width={630} height={280} data={data} >
+        <ComposedChart width={530} height={200} data={data} >
           <XAxis dataKey="Le"  />
           <YAxis unit="kg" />
           <Tooltip />

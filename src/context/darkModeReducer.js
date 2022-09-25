@@ -1,4 +1,4 @@
-const DarkModeReducer = (state, action) => {
+/*const DarkModeReducer = (state, action) => {
     switch (action.type) {
       case "LIGHT": {
         return {
@@ -20,4 +20,4 @@ const DarkModeReducer = (state, action) => {
     }
   };
   
-  export default DarkModeReducer;
+  export default DarkModeReducer;*/

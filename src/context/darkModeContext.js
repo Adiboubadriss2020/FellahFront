@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 
 import { createContext, useReducer } from "react";
 import DarkModeReducer from "./darkModeReducer";
@@ -17,4 +17,4 @@ export const DarkModeContextProvider = ({ children }) => {
       {children}
     </DarkModeContext.Provider>
   );
-};
+};*/

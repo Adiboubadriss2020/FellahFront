@@ -39,8 +39,7 @@ const useFakeMutation = () => {
     }
 
 
-  const URL = `http://localhost:8080/animal/update/`;
-  const URL1 = `http://localhost:8080/animal/etat`;
+    const URL1 = `https://fellah-back.herokuapp.com/animal/etat`;
   const mutateRow = useFakeMutation();
   const [snackbar, setSnackbar] = React.useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
@@ -55,7 +54,7 @@ const useFakeMutation = () => {
   const handleDelete = (id) => {
 
     console.log('Printing id', id);
-    axios.put(`http://localhost:8080/animal/updateinfos/${id}`).catch(error => {
+    axios.put(`https://fellah-back.herokuapp.com/animal/updateinfos/${id}`).catch(error => {
       setSnackbar({ children: error.message, severity: 'error' }); 
     })
     setSnackbar({ children: 'Fin de traitement', severity: 'success' });

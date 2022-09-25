@@ -11,10 +11,10 @@ import { Link } from 'react-router-dom';
 
 const Widget = ({type}) => {
 
-    const URL1 = `http://localhost:8080/fournisseur/allF`;
-    const URL2 = `http://localhost:8080/animal/allAn`;
-    const URL3 = `http://localhost:8080/employee/allEmp`;
-    const URL4 = `http://localhost:8080/client/allClt`;
+    const URL1 = `https://fellah-back.herokuapp.com/fournisseur/allF`;
+    const URL2 = `https://fellah-back.herokuapp.com/animal/allAn`;
+    const URL3 = `https://fellah-back.herokuapp.com/employee/allEmp`;
+    const URL4 = `https://fellah-back.herokuapp.com/client/allClt`;
 
     const [animal, setAnimal] = useState([]);
     const [fournisseur, setFournisseur] = useState([]);

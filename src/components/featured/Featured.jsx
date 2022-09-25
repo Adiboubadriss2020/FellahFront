@@ -33,7 +33,7 @@ const Featured = () => {
 
     console.log(id2)
 
-    fetch(`http://localhost:8080/alimentationanimal/alimentations/days/${id2}/`
+    fetch(`https://fellah-back.herokuapp.com/alimentationanimal/alimentations/days/${id2}/`
       , {
         headers: {
           'Content-Type': 'application/json',

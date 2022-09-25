@@ -1,52 +1,53 @@
 export let value = 0
-export const addalimentation = `http://localhost:8080/alimentation/add/`;
-export const updatealiemntation = `http://localhost:8080/alimentation/update/`;
-export const allalimentation = `http://localhost:8080/alimentation/getAll/`;
-export const deletealimentation = `http://localhost:8080/alimentation/delete/`;
+export const api = `https://fellah-back.herokuapp.com`
+export const addalimentation = api+`/alimentation/add/`;
+export const updatealiemntation = api+`/alimentation/update/`;
+export const allalimentation = api+`/alimentation/getAll/`;
+export const deletealimentation = api+`/alimentation/delete/`;
 // Alimentation_Animal
-export const addalimentationanimal = `http://localhost:8080/alimentationanimal/add`;
-export const addalimentationanimal_check = `http://localhost:8080/alimentation/check/`;
-export const check_alimentation_qnt = `http://localhost:8080/alimentation/updatequantite/`;
-export const allalimentationanimal = `http://localhost:8080/alimentationanimal/getAll/`;
-export const deletealimentationanimal = `http://localhost:8080/alimentationanimal/delete/`;
+export const addalimentationanimal = api+`/alimentationanimal/add`;
+export const addalimentationanimal_check = api+`/alimentation/check/`;
+export const check_alimentation_qnt = api+`/alimentation/updatequantite/`;
+export const allalimentationanimal = api+`/alimentationanimal/getAll/`;
+export const deletealimentationanimal = api+`/alimentationanimal/delete/`;
 // Animal
-export const updateanimal = `http://localhost:8080/animal/update/`;
-export const allanimal = `http://localhost:8080/animal/getAll/`;
-export const addanimal = `http://localhost:8080/animal/add/`;
-export const sumanimal = `http://localhost:8080/animal/sum/`;
-export const ventedate = `http://localhost:8080/animal/sum/`;
-export const sumcharge = `http://localhost:8080/charge/sum/`;
-export const charges = `http://localhost:8080/charge/days/`;
-export const animals = `http://localhost:8080/animal/days/`;
-export const sumgaincharge = `http://localhost:8080/charge/sum/days/`;
-export const sumgainanimal = `http://localhost:8080/animal/sum/days/`;
-export const deleteanimal = `http://localhost:8080/animal/delete/`;
+export const updateanimal = api+`/animal/update/`;
+export const allanimal = api+`/animal/getAll/`;
+export const addanimal = api+`/animal/add/`;
+export const sumanimal = api+`/animal/sum/`;
+export const ventedate = api+`/animal/sum/`;
+export const sumcharge = api+`/charge/sum/`;
+export const charges = api+`/charge/days/`;
+export const animals = api+`/animal/days/`;
+export const sumgaincharge = api+`/charge/sum/days/`;
+export const sumgainanimal = api+`/animal/sum/days/`;
+export const deleteanimal = api+`/animal/delete/`;
 // Fournisseur
-export const updatefournisseur = `http://localhost:8080/fournisseur/update/`;
-export const allfournisseur = `http://localhost:8080/fournisseur/getAll/`;
-export const addfournisseur = `http://localhost:8080/fournisseur/add/`;
-export const deletefournisseur = `http://localhost:8080/fournisseur/delete/`;
+export const updatefournisseur = api+`/fournisseur/update/`;
+export const allfournisseur = api+`/fournisseur/getAll/`;
+export const addfournisseur = api+`/fournisseur/add/`;
+export const deletefournisseur = api+`/fournisseur/delete/`;
 // Employés
-export const updateemployee = `http://localhost:8080/employee/update/`;
-export const allemloyee = `http://localhost:8080/employee/getAll/`;
-export const addemployee = `http://localhost:8080/employee/add/`;
-export const deleteemployee = `http://localhost:8080/employee/delete/`;
+export const updateemployee = api+`/employee/update/`;
+export const allemloyee = api+`/employee/getAll/`;
+export const addemployee = api+`/employee/add/`;
+export const deleteemployee = api+`/employee/delete/`;
 // Client
-export const updateclt = `http://localhost:8080/client/update/`;
-export const allclt = `http://localhost:8080/client/getAll/`;
-export const addclt = `http://localhost:8080/client/add/`;
-export const deleteclt = `http://localhost:8080/client/delete/`;
+export const updateclt = api+`/client/update/`;
+export const allclt = api+`/client/getAll/`;
+export const addclt = api+`/client/add/`;
+export const deleteclt = api+`/client/delete/`;
 // Veterinaire
-export const updateveterinaire = `http://localhost:8080/veterinaire/update/`;
-export const allveterinaire = `http://localhost:8080/veterinaire/getAll/`;
-export const addveterinaire = `http://localhost:8080/veterinaire/add/`;
-export const deleteveterinaire = `http://localhost:8080/veterinaire/delete/`;
-export const visitemedicale = `http://localhost:8080/visite/delete/`;
+export const updateveterinaire = api+`/veterinaire/update/`;
+export const allveterinaire = api+`/veterinaire/getAll/`;
+export const addveterinaire = api+`/veterinaire/add/`;
+export const deleteveterinaire = api+`/veterinaire/delete/`;
+export const visitemedicale = api+`/visite/delete/`;
 
 // Visite
-export const updatevisite = `http://localhost:8080/visite/update/`;
-export const allvisite = `http://localhost:8080/visite/getAll/`;
-export const addvisite = `http://localhost:8080/visite/add/`;
-export const deletevisite = `http://localhost:8080/visite/delete/`;
-export const checkanimal = `http://localhost:8080/animal/check/`;
-export const checkveterinaire = `http://localhost:8080/veterinaire/check/`;
+export const updatevisite = api+`/visite/update/`;
+export const allvisite = api+`/visite/getAll/`;
+export const addvisite = api+`/visite/add/`;
+export const deletevisite = api+`/visite/delete/`;
+export const checkanimal = api+`/animal/check/`;
+export const checkveterinaire = api+`/veterinaire/check/`;

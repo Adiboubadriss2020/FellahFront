@@ -31,7 +31,7 @@ const Datatable = () => {
 
         axios.put(updatevisite+`${data.id}`, data);
         setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
-      //  window.location.reload(false);
+       window.location.reload(false);
     },
     );
 
@@ -50,7 +50,7 @@ const Datatable = () => {
             setSnackbar({ children: 'Bien supprimer', severity: 'success' });
             window.location.reload(false);
         } else {
-            console.log('Thing was not saved to the database.');
+            console.log('Error!');
         }
        
 

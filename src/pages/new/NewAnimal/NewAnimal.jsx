@@ -106,6 +106,8 @@ const handleSubmit = (e) => {
   });
 
   setSnackbar({ children: "Ref bien enregistrer", severity: 'success' });
+  window.location.reload(false);
+
 }
 
 

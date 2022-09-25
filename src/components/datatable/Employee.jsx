@@ -63,7 +63,7 @@ const Datatable = () => {
       setSnackbar({ children: 'Deleted successfully', severity: 'success' });
       window.location.reload(false);
     } else {
-      console.log('Thing was not saved to the database.');
+      console.log('Error!.');
     }
    
 

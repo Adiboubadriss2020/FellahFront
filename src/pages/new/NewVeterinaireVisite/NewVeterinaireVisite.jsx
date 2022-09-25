@@ -94,7 +94,7 @@ export const NewVeterinaireVisite = () => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
                     setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
-                  //  window.location.reload(false);
+                   window.location.reload(false);
 
                 }).catch(error => {
                     setSnackbar({ children: error.message + ", Verifier le nom de veterinaire", severity: 'error' });

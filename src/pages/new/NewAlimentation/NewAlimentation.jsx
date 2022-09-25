@@ -12,7 +12,7 @@ export const NewAlimentation = () => {
     const [alimentation, setAlimentation] = useState({
         ref:"",
         date_arrivage:"",
-        prix_arrivage:"",
+       // prix_arrivage:"",
         quantite_arrivage:"",
         type_alimentation:"",
     });
@@ -37,7 +37,7 @@ export const NewAlimentation = () => {
             label: "Date d'arrivage",
             required: true,
         },
-        {
+       /* {
             id: 3,
             name: "prix_arrivage",
             type: "text",
@@ -47,9 +47,9 @@ export const NewAlimentation = () => {
             pattern: "^([0-9']{2,10})$",
             label: "Prix d'arrivage",
             required: true,
-        },
+        },*/
         {
-            id: 4,
+            id: 3,
             name: "type_alimentation",
             type: "text",
             placeholder: "Type d'alimentation",
@@ -60,7 +60,7 @@ export const NewAlimentation = () => {
             required: true,
         },
         {
-            id: 5,
+            id: 4,
             name: "quantite_arrivage",
             type: "text",
             placeholder: "Quantite ",
@@ -79,6 +79,8 @@ export const NewAlimentation = () => {
         });
 
         setSnackbar({ children: 'Alimentation bien enregistrer', severity: 'success' });
+        window.location.reload(false);
+
     }
 
 

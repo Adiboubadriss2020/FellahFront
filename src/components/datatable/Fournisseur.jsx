@@ -60,7 +60,7 @@ const handleUpdate = React.useCallback(async(data) =>
         setSnackbar({ children: "Fournisseur active!", severity: 'error' });
       })
       setSnackbar({ children: 'Bien supprimer', severity: 'success' });
-     // window.location.reload(false);    
+      window.location.reload(false);    
     } else {
       console.log('Thing was not saved to the database.');
     }

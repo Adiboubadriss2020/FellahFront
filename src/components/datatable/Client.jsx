@@ -64,7 +64,7 @@ const Datatable = () => {
       window.location.reload(false);
 
     } else {
-      console.log('Thing was not saved to the database.');
+      console.log('Error!.');
     }
    
 

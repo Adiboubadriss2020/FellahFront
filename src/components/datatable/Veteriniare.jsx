@@ -106,7 +106,7 @@ const Datatable = () => {
         }
     }];
     const veter = [{
-        field: "veterinaire_id", headerName: "Veterinaire", width: 200,
+        field: "veterinaire_id", headerName: "Veterinaire", width: 150,
         renderCell: (params) => {
 
 
@@ -118,7 +118,7 @@ const Datatable = () => {
         }
     }];
     const bov = [{
-        field: "bovin_id", headerName: "Ref bovin", width: 200,
+        field: "bovin_id", headerName: "Ref bovin", width: 150,
         renderCell: (params) => {
 
 

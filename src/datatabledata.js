@@ -14,12 +14,12 @@ export const employeecol=[
  
 ];
 export const animalcol = [
-    { field: "ref", headerName: "Identifiant", editable: true, width: 80 },
+    { field: "ref", headerName: "Identifiant", editable: true, width: 100 },
     { field: "date_achat", headerName: "Date d'achat", type: "date",editable: true, width: 100 },
     { field: "date_vente", headerName: "Date de vente", type: "date", editable: true, width: 100 },
     { field: "origine", headerName: "Origine", editable: true, width:100 },
-  { field: "poid_achat", headerName: "Poid d'achat", editable: true, width: 100 },
-  { field: "poid_vente", headerName: "Poid de vente", editable: true, width: 100 }, 
+  { field: "poid_achat", headerName: "Poid d'achat", editable: true, width: 120 },
+  { field: "poid_vente", headerName: "Poid de vente", editable: true, width: 120 }, 
     { field: "prix_achat", headerName: "Prix d'achat", editable: true, width:100 },
   { field: "prix_vente", headerName: "Prix de vente", editable: true, width: 100 },
     //{ field: "infos", headerName: "Infos", editable: true, width: 300 },
@@ -55,10 +55,10 @@ export const alimentationanimal = [
 ];
 
 export const visitecol = [
-  { field: "id", headerName: "Numéro", type: "text", width: 150 },
+  { field: "id", headerName: "Numéro", type: "text", width: 120 },
   { field: "date_visite", headerName: "Date de visite", type: "date", editable: true, width: 150 },
-  { field: "medicament", headerName: "Médicament", type: "text", editable: true, width: 150 },
-  { field: "prix_medicament", headerName: "Prix (Dh)", type: "number", editable: true, width: 150 },
+  { field: "medicament", headerName: "Médicament", type: "text", editable: true, width: 120 },
+  { field: "prix_medicament", headerName: "Prix (Dh)", type: "number", editable: true, width: 120 },
 
 ];
 export const veterinairecol = [

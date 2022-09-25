@@ -10,18 +10,18 @@ export const employeecol=[
   { field: "prenom", headerName: "Prenom", editable: true, width: 200 },
   { field: "age", headerName: "Age", editable: true, width: 200 },
     { field:"adresse",headerName:"Adresse", editable: true,width:250},
-    { field: "salaire", headerName: "Salaire", editable: true, width: 200 },
+   // { field: "salaire", headerName: "Salaire", editable: true, width: 200 },
  
 ];
 export const animalcol = [
-    { field: "ref", headerName: "Identifiant", editable: true, width: 100 },
+    { field: "ref", headerName: "Identifiant", editable: true, width: 80 },
     { field: "date_achat", headerName: "Date d'achat", type: "date",editable: true, width: 150 },
     { field: "date_vente", headerName: "Date de vente", type: "date", editable: true, width: 150 },
     { field: "origine", headerName: "Origine", editable: true, width:100 },
   { field: "poid_achat", headerName: "Poid d'achat", editable: true, width: 100 },
   { field: "poid_vente", headerName: "Poid de vente", editable: true, width: 100 }, 
-    { field: "prix_achat", headerName: "Prix d'achat", editable: true, width:200 },
-  { field: "prix_vente", headerName: "Prix de vente", editable: true, width: 200 },
+    { field: "prix_achat", headerName: "Prix d'achat", editable: true, width:150 },
+  { field: "prix_vente", headerName: "Prix de vente", editable: true, width: 150 },
     //{ field: "infos", headerName: "Infos", editable: true, width: 300 },
 
 
@@ -39,7 +39,7 @@ export const clientcol = [
   { field: "nom", headerName: "Nom", editable: true, width: 200 },
   { field: "prenom", headerName: "Prenom", editable: true, width: 200 },
   { field: "adresse", headerName: "Adresse", editable: true, width: 250 },
-  { field: "tel", headerName: "Telephone", editable: true, width: 200 },
+  { field: "tel", headerName: "Telephone", editable: true, width: 150 },
 
 ];
 export const alimentationcol = [
@@ -49,8 +49,8 @@ export const alimentationcol = [
 
 ];
 export const alimentationanimal = [
-  { field: "quantite", headerName: "Quantité", type: "number",  width: 300 },
-  { field: "date_alimentation", headerName: "Date d'alimentation", type: "date",  width: 300 },
+  { field: "quantite", headerName: "Quantité", type: "number",  width: 200 },
+  { field: "date_alimentation", headerName: "Date d'alimentation", type: "date",  width: 200 },
   
 ];
 

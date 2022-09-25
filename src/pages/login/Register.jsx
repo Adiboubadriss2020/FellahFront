@@ -68,7 +68,7 @@ export const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(registeru)
-        axios.post(`http://localhost:8080/account/register`, registeru).then(val => {
+        axios.post(`https://fellah-back.herokuapp.com/account/register`, registeru).then(val => {
             va =val.data
             if(va.includes('Emai'))
             {

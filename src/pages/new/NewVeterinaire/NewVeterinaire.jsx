@@ -16,6 +16,7 @@ export const NewVeterinaire = () => {
     const [values, setValues] = useState({
         nom: "",
         telephone: "",
+        adresse: "",
     });
 
     const inputs = [
@@ -39,6 +40,17 @@ export const NewVeterinaire = () => {
                 "Respecter le numéro de telephone",
             label: "Télephone",
             pattern: "^(0[675][0-9]{8})$",
+            required: true,
+        },
+        {
+            id: 3,
+            name: "adresse",
+            type: "text",
+            placeholder: "Adresse",
+            errorMessage:
+                "L'adresse' doit comporter de 3 à 50 caractères et ne doit pas inclure de caractère spécial !",
+            label: "Adresse",
+            pattern: "^[A-Za-z0-9]{3,50}$",
             required: true,
         },
     ];

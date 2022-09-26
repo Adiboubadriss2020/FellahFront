@@ -43,9 +43,11 @@ export const clientcol = [
 
 ];
 export const alimentationcol = [
-  { field: "type_alimentation", headerName: "Type d'alimentation", type: "text", editable: true, width: 300 },
-  { field: "date_arrivage", headerName: "Date d'arrivage'", type: "date", editable: true, width: 300 },
-  { field: "quantite_arrivage", headerName: "Quantité", editable: true, width: 300 },
+  { field: "type_alimentation", headerName: "Type d'alimentation", type: "text", editable: true, width: 150 },
+  { field: "date_arrivage", headerName: "Date d'arrivage'", type: "date", editable: true, width: 200 },
+  { field: "quantite_arrivage", headerName: "Quantité", editable: true, width: 200 },
+  { field: "prix_arrivage", headerName: "Prix", editable: true, width: 200},
+
 
 ];
 export const alimentationanimal = [
@@ -62,6 +64,7 @@ export const visitecol = [
 
 ];
 export const veterinairecol = [
-  { field: "nom", headerName: "Nom", type: "text", editable: true, width: 400 },
-  { field: "telephone", headerName: "Description", type: "text", editable: true, width: 400 },
+  { field: "nom", headerName: "Nom", type: "text", editable: true, width: 300 },
+  { field: "telephone", headerName: "Description", type: "text", editable: true, width: 300 },
+  { field: "adresse", headerName: "Adresse", type: "text", editable: true, width: 300 },
 ];

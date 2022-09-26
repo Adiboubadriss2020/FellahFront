@@ -6,13 +6,30 @@ import Snackbar from '@mui/material/Snackbar';
 import FormInput from '../Inputpopup/FormInput';
 import { addalimentation } from '../../../var';
 export const NewAlimentation = () => {
+
+    const [employee, setEmployee] = useState(null);
+    const [client, setClient] = useState(null);
+    const [fournisseur, setFournisseur] = useState(null);
+    const [veterianire, setVeterinare] = useState(null);
+    const [date_charge, setDate_charge] = useState();
+    const [prix, setPrix] = useState(null);
+    const charge = {
+        date_charge,
+        prix,
+        alimentation,
+        client,
+        employee,
+        fournisseur,
+        veterianire,
+    }
+
     //const [alimentation, setAlimentation] = useState([])
     const [snackbar, setSnackbar] = React.useState(null);
     const handleCloseSnackbar = () => setSnackbar(null);
     const [alimentation, setAlimentation] = useState({
         ref:"",
         date_arrivage:"",
-       // prix_arrivage:"",
+        prix_arrivage:"",
         quantite_arrivage:"",
         type_alimentation:"",
     });
@@ -37,7 +54,7 @@ export const NewAlimentation = () => {
             label: "Date d'arrivage",
             required: true,
         },
-       /* {
+        {
             id: 3,
             name: "prix_arrivage",
             type: "text",
@@ -47,9 +64,9 @@ export const NewAlimentation = () => {
             pattern: "^([0-9']{2,10})$",
             label: "Prix d'arrivage",
             required: true,
-        },*/
+        },
         {
-            id: 3,
+            id: 4,
             name: "type_alimentation",
             type: "text",
             placeholder: "Type d'alimentation",
@@ -59,8 +76,9 @@ export const NewAlimentation = () => {
             pattern: "^[A-Za-z]{3,16}$",
             required: true,
         },
+        
         {
-            id: 4,
+            id: 5,
             name: "quantite_arrivage",
             type: "text",
             placeholder: "Quantite ",
@@ -77,7 +95,12 @@ export const NewAlimentation = () => {
         axios.post(addalimentation, alimentation).catch(error => {
             setSnackbar({ children: "Ref déja existe!", severity: 'error' });
         });
-
+        charge.alimentation=alimentation;
+        charge.prix=alimentation.prix_arrivage;
+        charge.date_charge=alimentation.date_arrivage;
+        axios.post(`https://fellah-back.herokuapp.com/charge/add`, charge).catch(error => {
+            setSnackbar({ children: error.message, severity: 'error' });
+        });
         setSnackbar({ children: 'Alimentation bien enregistrer', severity: 'success' });
         window.location.reload(false);
 

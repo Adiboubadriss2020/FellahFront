@@ -97,6 +97,8 @@ const Addcharge= () =>{
                     });
 
                     setSnackbar({ children: "Bien enregistrer", severity: 'success' });
+                    window.location.reload(false);
+
                 })
         }
         else if (a === "employee") { 
@@ -110,6 +112,8 @@ const Addcharge= () =>{
                     });
 
                     setSnackbar({ children: "Bien enregistrer", severity: 'success' });
+                    window.location.reload(false);
+
                 })
         }
         else if (a === "client") {
@@ -122,6 +126,8 @@ const Addcharge= () =>{
                     });
 
                     setSnackbar({ children: "Bien enregistrer", severity: 'success' });
+                    window.location.reload(false);
+
                 })
          }
         else if (a === "veterinaire") { 
@@ -134,6 +140,8 @@ const Addcharge= () =>{
                     });
 
                     setSnackbar({ children: "Bien enregistrer", severity: 'success' });
+                    window.location.reload(false);
+
                 })
          }
         else if (a === "alimentation") {
@@ -146,6 +154,8 @@ const Addcharge= () =>{
                 });
 
                 setSnackbar({ children: "Bien enregistrer", severity: 'success' });
+                window.location.reload(false);
+
             }) }
         
     };

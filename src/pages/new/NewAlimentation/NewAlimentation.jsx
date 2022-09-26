@@ -79,7 +79,7 @@ export const NewAlimentation = () => {
             setSnackbar({ children: "Ref déja existe!", severity: 'error' });
         });
         setSnackbar({ children: 'Alimentation bien enregistrer', severity: 'success' });
-        window.location.reload(false);
+      //  window.location.reload(false);
 
     }
 

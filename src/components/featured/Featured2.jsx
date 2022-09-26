@@ -53,7 +53,7 @@ const Featured2 = () => {
   useEffect(() => {
     filter2 = document.getElementById('fil')
     if (filter2)
-      filter2.addEventListener('change', changer)
+    changer()
   }, []) 
 
   return (

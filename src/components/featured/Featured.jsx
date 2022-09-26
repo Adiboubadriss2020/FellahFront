@@ -66,6 +66,7 @@ const Featured = () => {
 
   useEffect(() => {
     filter = document.getElementById('filter1')
+    changer()
     if (filter)
       filter.addEventListener('change', changer)
   }, []) 

@@ -55,6 +55,7 @@ const Chart = ({aspect, title}) => {
 
   useEffect(() => {
     filter = document.getElementById('filter')
+    changer()
     if (filter)
       filter.addEventListener('change', changer)
   }, []) 

@@ -103,7 +103,7 @@ export const NewAlimentation = () => {
             setSnackbar({ children: error.message, severity: 'error' });
         });
         setSnackbar({ children: 'Alimentation bien enregistrer', severity: 'success' });
-        window.location.reload(false);
+       // window.location.reload(false);
 
     }
 

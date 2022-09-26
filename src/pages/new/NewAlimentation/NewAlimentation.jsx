@@ -98,6 +98,7 @@ export const NewAlimentation = () => {
         charge.alimentation=alimentation;
         charge.prix=alimentation.prix_arrivage;
         charge.date_charge=alimentation.date_arrivage;
+        console.log(charge)
         axios.post(`https://fellah-back.herokuapp.com/charge/add`, charge).catch(error => {
             setSnackbar({ children: error.message, severity: 'error' });
         });

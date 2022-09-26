@@ -61,7 +61,6 @@ const Featured2 = () => {
       <div className="top">
 
         <select id="fil">
-          <option value="Select">-- Choix --</option>
           <option value="30">Dernier mois</option>
           <option value="90">Dernier 3 mois</option>
           <option value="365">Dernière années</option>

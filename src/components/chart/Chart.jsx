@@ -64,8 +64,7 @@ const Chart = ({aspect, title}) => {
  
       <div className="selecbox">
         <select id="filter">
-          <option value="⬇️ Select ⬇️"> -- Choix -- </option>
-          <option value="30">Dernier mois</option>
+          <option value="30">Dernier mois</option>         
           <option value="90">Dernier 3 mois</option>
           <option value="365">Dernière années</option>
         </select>

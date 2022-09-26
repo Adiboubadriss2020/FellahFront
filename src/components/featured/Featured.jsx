@@ -74,10 +74,9 @@ const Featured = () => {
     <div className='chart'>
       <div className="top">
         <select id="filter1">
-          <option value="⬇️ Select ⬇️"> --Choix -- </option>
-          <option value="3">Dernier 3 jours</option>
-          <option value="7">Dernier semaine</option>
           <option value="30">Dernier mois</option>
+          <option value="90">Dernier 3 mois</option>
+          <option value="365">Dernière années</option>
         </select>
         <div className="title">Alimentation</div>
         <CustomizedDialogs>

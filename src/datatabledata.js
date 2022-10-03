@@ -43,6 +43,7 @@ export const clientcol = [
 
 ];
 export const alimentationcol = [
+  { field: "ref", headerName: "Réf", type: "text",width: 150 },
   { field: "type_alimentation", headerName: "Type d'alimentation", type: "text", editable: true, width: 150 },
   { field: "date_arrivage", headerName: "Date d'arrivage'", type: "date", editable: true, width: 200 },
   { field: "quantite_arrivage", headerName: "Quantité", editable: true, width: 200 },

@@ -22,7 +22,7 @@ const Datatable = () => {
     const handleUpdate = React.useCallback(async (data) => {
         console.log(data)
         axios.put(updatealiemntation+`${data.id}`, data);
-        setSnackbar({ children: 'Alimentation bien enregister', severity: 'success' });
+        setSnackbar({ children: 'Alimentation bien enregisté', severity: 'success' });
         window.location.reload(false);
     }, );
 
@@ -60,11 +60,11 @@ const Datatable = () => {
 
                     return () => clearTimeout(timer);
                 }
-                setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+                setSnackbar({ children: 'Bien supprimé', severity: 'success' });
                 window.location.reload(false);
             })
 
-            setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+            setSnackbar({ children: 'Bien supprimé', severity: 'success' });
         } else {
             console.log('Thing was not saved to the database.');
         }

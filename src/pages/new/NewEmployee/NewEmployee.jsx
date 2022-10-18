@@ -71,7 +71,7 @@ const NewEmployee = () => {
             setSnackbar({ children: error.message, severity: 'error' });
         });
 
-        setSnackbar({ children: 'Employé bien enregistrer', severity: 'success' });
+        setSnackbar({ children: 'Employé bien enregistré', severity: 'success' });
         window.location.reload(false);
     }
     

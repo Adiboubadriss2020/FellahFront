@@ -77,7 +77,7 @@ export const NewAlimentation = () => {
         e.preventDefault()
         console.log(alimentation)
         axios.post(addalimentation, alimentation).catch(error => {
-            setSnackbar({ children: "Ref existe déja", severity: 'error' });
+            setSnackbar({ children: "Ref existe déja!", severity: 'error' });
         });
         setSnackbar({ children: 'Alimentation bien enregistré', severity: 'success' });
       window.location.reload(false);

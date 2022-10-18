@@ -71,7 +71,7 @@ export const NewAnimalAlimentation = () => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
                     setSnackbar({ children: 'Alimentation bien enregistré', severity: 'success' });
-                     
+                     window.location.reload(false);
                     axios.put(check_alimentation_qnt+`${alimentation_animal.quantite}/${alimentation_animal.alimentation.id}`).catch(error => {
                         setSnackbar({ children: error.message + " quantite problem!", severity: 'error' });
                     });
@@ -80,7 +80,7 @@ export const NewAnimalAlimentation = () => {
             }).catch(error => {
                 setSnackbar({ children:", Verifier l'identifiant de l'alimentation", severity: 'error' });
             });
-window.location.reload(false);
+
         /* */
 
     

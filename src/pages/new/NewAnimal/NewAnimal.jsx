@@ -102,10 +102,10 @@ const inputs = [
 const handleSubmit = (e) => {
   e.preventDefault()
   axios.post(addanimal, animal).catch(error => {
-    setSnackbar({ children: "Ref déja existe!", severity: 'error' });
+    setSnackbar({ children: "Ref existe déja!", severity: 'error' });
   });
 
-  setSnackbar({ children: "Ref bien enregistrer", severity: 'success' });
+  setSnackbar({ children: "Ref bien enregistré", severity: 'success' });
   window.location.reload(false);
 
 }

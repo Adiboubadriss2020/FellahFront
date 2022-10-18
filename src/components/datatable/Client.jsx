@@ -61,7 +61,7 @@ const Datatable = () => {
         setSnackbar({ children: error.message, severity: 'error' });
       })
       setSnackbar({ children: 'Bien supprimé', severity: 'success' });
-     // window.location.reload(false);
+      window.location.reload(false);
 
     } else {
       console.log('Error!.');

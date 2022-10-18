@@ -74,7 +74,7 @@ export const NewClient = () => {
       setSnackbar({ children: error.message, severity: 'error' });
     });
 
-    setSnackbar({ children: 'Client bien enregistrer', severity: 'success' });
+    setSnackbar({ children: 'Client bien enregistré', severity: 'success' });
     window.location.reload(false);
   }
 

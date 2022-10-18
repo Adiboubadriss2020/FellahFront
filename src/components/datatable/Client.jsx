@@ -60,8 +60,8 @@ const Datatable = () => {
       axios.delete(deleteclt + `${id}`).catch(error => {
         setSnackbar({ children: error.message, severity: 'error' });
       })
-      setSnackbar({ children: 'Bien supprimer', severity: 'success' });
-      window.location.reload(false);
+      setSnackbar({ children: 'Bien supprimé', severity: 'success' });
+     // window.location.reload(false);
 
     } else {
       console.log('Error!.');

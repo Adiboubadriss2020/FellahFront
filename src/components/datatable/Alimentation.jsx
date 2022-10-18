@@ -53,12 +53,8 @@ const Datatable = () => {
         console.log('Printing id', id);
         if (window.confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
             axios.delete(deletealimentation + `${id}`).catch(error => {
-                if (error) {
-                    const timer = setTimeout(() => {
+                if (error) { 
                         setSnackbar({ children: " Ce type d'alimentation est utilisé dans l'alimentation animal", severity: 'error' });
-                    }, 500);
-
-                    return () => clearTimeout(timer);
                 }
                 setSnackbar({ children: 'Bien supprimé', severity: 'success' });
                 window.location.reload(false);

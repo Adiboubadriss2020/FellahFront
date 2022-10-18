@@ -64,13 +64,14 @@ export const NewAnimalAlimentation = () => {
                 alimentation_animal.alimentation = response.data
 
                 if (alimentation_animal.alimentation.quantite_arrivage === 0 || alimentation_animal.alimentation.quantite_arrivage < alimentation_animal.quantite) {
-                    setSnackbar({ children: " Alimentation insuffisant! ", severity: 'error' });
+                    setSnackbar({ children: " Alimentation insuffisante! ", severity: 'error' });
                 } else {
                     alimentation_animal.alimentation = response.data
                     axios.post(addalimentationanimal, alimentation_animal).catch(error => {
                         setSnackbar({ children: error.message, severity: 'error' });
                     });
-                    setSnackbar({ children: 'Alimentation bien enregistrer', severity: 'success' });
+                    setSnackbar({ children: 'Alimentation bien enregistré', severity: 'success' });
+                     
                     axios.put(check_alimentation_qnt+`${alimentation_animal.quantite}/${alimentation_animal.alimentation.id}`).catch(error => {
                         setSnackbar({ children: error.message + " quantite problem!", severity: 'error' });
                     });
@@ -79,7 +80,7 @@ export const NewAnimalAlimentation = () => {
             }).catch(error => {
                 setSnackbar({ children:", Verifier l'identifiant de l'alimentation", severity: 'error' });
             });
-
+window.location.reload(false);
         /* */
 
     

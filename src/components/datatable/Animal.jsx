@@ -44,6 +44,8 @@ const Datatable = () => {
     const response = await mutateRow(data);
     setSnackbar({ children: 'Bovin bien enregistrer', severity: 'success' });
     return response;
+           window.location.reload(false);
+
   },
     [mutateRow],
   );

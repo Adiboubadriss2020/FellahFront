@@ -179,7 +179,7 @@ const Datatable = () => {
             )}
 
            
-                <div className="datatabletitle">Visite
+                <div className="datatabletitle">Visite Médicale
                 <CustomizedDialogs title="Ajouter une visite" button="Ajouter">
                     <NewVeterinaireVisite />
                 </CustomizedDialogs>

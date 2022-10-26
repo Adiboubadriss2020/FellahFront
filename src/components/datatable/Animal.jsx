@@ -42,9 +42,10 @@ const Datatable = () => {
   const handleUpdate = React.useCallback(async (data) => {
     axios.put(updateanimal + `${data.id}`, data)
     const response = await mutateRow(data);
-    setSnackbar({ children: 'Bovin bien enregistrer', severity: 'success' });
+    setSnackbar({ children: 'Bovin bien enregistré', severity: 'success' });
+    window.location.reload(false);
     return response;
-           window.location.reload(false);
+           
 
   },
     [mutateRow],
@@ -62,7 +63,7 @@ const Datatable = () => {
       axios.delete(deleteanimal + `${id}`).catch(error => {
         setSnackbar({ children: error.message, severity: 'error' });
       })
-      setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+      setSnackbar({ children: 'Bien supprimé', severity: 'success' });
       window.location.reload(false);
     
   } else {

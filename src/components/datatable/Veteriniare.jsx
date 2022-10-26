@@ -62,7 +62,7 @@ const Datatable = () => {
             axios.delete(deleteveterinaire + `${id}`).catch(error => {
                 if (error) {
                     const timer = setTimeout(() => {
-                        setSnackbar({ children: " Cet veterinaire a déja effectué une viste!", severity: 'error' });
+                        setSnackbar({ children: " Ce veterinaire a déja effectué une viste!", severity: 'error' });
                     }, 500);
 
                     return () => clearTimeout(timer);

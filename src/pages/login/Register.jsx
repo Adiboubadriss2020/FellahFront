@@ -95,7 +95,7 @@ export const Register = () => {
         <div style={{alignItems:'center', alignContent: 'center',marginLeft:'500px'}}>
 
             <form onSubmit={handleSubmit}>
-                    <h1 style={{ marginRight: '550px', fontFamily: "Helvetica Neue" + ',' + "Helvetica, Arial" }}>Register</h1>
+                    <h1 style={{ marginRight: '550px', fontFamily: "Helvetica Neue" + ',' + "Helvetica, Arial" }}>Nouveau compte</h1>
                 {inputs.map((input) => (
                     <FormInput
                         key={input.id}
@@ -105,7 +105,7 @@ export const Register = () => {
                     />
                 ))}
                     <button>Créer</button><br/>
-                    <Link to={"/login"} >Login</Link>
+                    <Link to={"/login"} >Se connecter</Link>
                 {!!snackbar && (
                     <Snackbar
                         open

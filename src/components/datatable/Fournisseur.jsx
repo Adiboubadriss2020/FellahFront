@@ -40,7 +40,7 @@ const handleUpdate = React.useCallback(async(data) =>
 
   axios.put(updatefournisseur+`${data.id}`,data);
     const response = await mutateRow(data);
-    setSnackbar({ children: 'Fournisseur bien enregistreé', severity: 'success' });
+    setSnackbar({ children: 'Fournisseur bien enregistré', severity: 'success' });
     return response;
   },
     [mutateRow],

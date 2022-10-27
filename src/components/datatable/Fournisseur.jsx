@@ -40,7 +40,7 @@ const handleUpdate = React.useCallback(async(data) =>
 
   axios.put(updatefournisseur+`${data.id}`,data);
     const response = await mutateRow(data);
-    setSnackbar({ children: 'Fournisseur bien enregistrer', severity: 'success' });
+    setSnackbar({ children: 'Fournisseur bien enregistreé', severity: 'success' });
     return response;
   },
     [mutateRow],
@@ -59,7 +59,7 @@ const handleUpdate = React.useCallback(async(data) =>
       axios.delete(deletefournisseur + `${id}`).catch(error => {
         setSnackbar({ children: "Fournisseur active!", severity: 'error' });
       })
-      setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+      setSnackbar({ children: 'Bien supprimé', severity: 'success' });
       window.location.reload(false);    
     } else {
       console.log('Thing was not saved to the database.');

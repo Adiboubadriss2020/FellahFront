@@ -42,7 +42,7 @@ const Datatable = () => {
 
     axios.put(updateclt + `${data.id}`, data)
     const response = await mutateRow(data);
-    setSnackbar({ children: 'Employé bien enregistrer', severity: 'success' });
+    setSnackbar({ children: 'Employé bien enregistré', severity: 'success' });
     return response;
   },
     [mutateRow],

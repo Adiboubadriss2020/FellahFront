@@ -23,14 +23,14 @@ const Datatable = () => {
     const handleUpdateVe = React.useCallback(async (data) => {
 
         axios.put(updateveterinaire+`${data.id}`, data);
-        setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
+        setSnackbar({ children: 'Visite bien enregistré', severity: 'success' });
     },
     );
 
     const handleUpdateVi = React.useCallback(async (data) => {
 
         axios.put(updatevisite+`${data.id}`, data);
-        setSnackbar({ children: 'Visite bien enregistrer', severity: 'success' });
+        setSnackbar({ children: 'Visite bien enregistré', severity: 'success' });
        window.location.reload(false);
     },
     );
@@ -47,7 +47,7 @@ const Datatable = () => {
             axios.delete(deletevisite + `${id}`).catch(error => {
                 setSnackbar({ children: error.message, severity: 'error' });
             })
-            setSnackbar({ children: 'Bien supprimer', severity: 'success' });
+            setSnackbar({ children: 'Bien supprimé', severity: 'success' });
             window.location.reload(false);
         } else {
             console.log('Error!');
@@ -62,7 +62,7 @@ const Datatable = () => {
             axios.delete(deleteveterinaire + `${id}`).catch(error => {
                 if (error) {
                     const timer = setTimeout(() => {
-                        setSnackbar({ children: " Ce veterinaire a déja effectué une viste!", severity: 'error' });
+                        setSnackbar({ children: " Ce veterinaire a déja effectué une viste médicale!", severity: 'error' });
                     }, 500);
 
                     return () => clearTimeout(timer);

@@ -83,7 +83,7 @@ export const Login = (va) => {
     <div style={{ marginTop: '100px' }}>
       <div style={{ alignItems: 'center', alignContent: 'center', marginLeft: '500px' }}>
         <form onSubmit={handleSubmit}>
-          <h1 style={{ marginRight: '580px', fontFamily: "Helvetica Neue"+','+"Helvetica, Arial"}}>Login</h1>
+          <h1 style={{ marginRight: '580px', fontFamily: "Helvetica Neue"+','+"Helvetica, Arial"}}>Se connecter</h1>
           {inputs.map((input) => (
             <FormInput
               key={input.id}
@@ -98,7 +98,7 @@ export const Login = (va) => {
           </button>
 
          <br />
-          <Link to={"/"} >Register</Link>
+          <Link to={"/"} >Créer un nouveau compte</Link>
           {!!snackbar && (
             <Snackbar
               open

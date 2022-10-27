@@ -35,7 +35,7 @@ export const Home = () => {
         
         <div className="charts">
         <Featured/>
-        <Chart aspect={2.6/1} title="Les Charges"/>
+        <Chart aspect={2.6/1} title="Charges"/>
         </div>
         <Featured2 />
       </div>
